@@ -12,16 +12,9 @@ class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
     @Persisted var content: String?
-    @Persisted var registerDate: Date
-
-    var dateString: String? {
-        let myFormatter = DateFormatter()
-        myFormatter.dateFormat = "yyyy. MM. dd"
-        let savedDateString = myFormatter.string(from: registerDate)
-        return savedDateString
-    }
+    @Persisted var registerDate: String?
     
-    convenience init(title: String, content: String?, registerDate: Date) {
+    convenience init(title: String, content: String?, registerDate: String?) {
         self.init()
         self.title = title
         self.content = content

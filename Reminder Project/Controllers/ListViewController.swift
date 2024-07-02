@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import RealmSwift
 
+
 final class ListViewController: BaseViewController {
 
     private let tableView = UITableView()
@@ -23,7 +24,9 @@ final class ListViewController: BaseViewController {
         configureTableView()
         configureData()
     }
-    
+    override func configureHierarchy() {
+        view.addSubview(tableView)
+    }
 
     override func configureLayout(){
         tableView.snp.makeConstraints { make in
@@ -49,6 +52,7 @@ final class ListViewController: BaseViewController {
     
     @objc func addButtonTapped(){
         let addVC = AddViewController()
+        addVC.delegate = self
         let nav = UINavigationController(rootViewController: addVC)
         present(nav, animated:true)
     }
@@ -83,3 +87,13 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
 
 }
 
+extension ListViewController:AddTodoDelegate{
+    func addTodo(data:Todo) {
+        try! self.realm.write {
+            self.realm.add(data)
+        }
+        tableView.reloadData()
+    }
+    
+    
+}

@@ -21,25 +21,18 @@ final class AddView: BaseView {
         textView.backgroundColor = UIColor(red: 0.16, green: 0.16, blue: 0.16, alpha: 1.00)
         return textView
     }()
-    private let deadlineButton = {
-        let button = UIButton()
-        button.setTitle("마감일", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 12
-        button.clipsToBounds = true
-        button.backgroundColor = UIColor(red: 0.16, green: 0.16, blue: 0.16, alpha: 1.00)
-        return button
+    let deadLineTextField = {
+        let textField = UITextField()
+        textField.placeholder = "마감일"
+        textField.backgroundColor = UIColor(red: 0.16, green: 0.16, blue: 0.16, alpha: 1.00)
+        return textField
     }()
-    private let deadlinePicker = {
-        let picker = UIPickerView()
-        return picker
-    }()
+
     
     override func configureHierarchy() {
         addSubview(titleTextField)
         addSubview(contentTextView)
-        addSubview(deadlineButton)
-        addSubview(deadlinePicker)
+        addSubview(deadLineTextField)
     }
     
     override func configureLayout() {
@@ -52,7 +45,7 @@ final class AddView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
             make.height.equalTo(88)
         }
-        deadlineButton.snp.makeConstraints { make in
+        deadLineTextField.snp.makeConstraints { make in
             make.top.equalTo(contentTextView.snp.bottom).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
             make.height.equalTo(44)

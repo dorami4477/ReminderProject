@@ -61,6 +61,6 @@ final class ListTableCell: BaseTableCell {
     func configureData(){
         titleLabel.text = data?.title
         contentLabel.text = data?.content
-        dateLabel.text = data?.dateString
+        dateLabel.text = data?.registerDate
     }
 }

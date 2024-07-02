@@ -15,6 +15,14 @@
 		488C005F2C343100005F900F /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 488C005E2C343100005F900F /* .gitignore */; };
 		488C00632C34318E005F900F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 488C00622C34318E005F900F /* SnapKit */; };
 		488C00662C3431BD005F900F /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 488C00652C3431BD005F900F /* RealmSwift */; };
+		488C00692C34332D005F900F /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00682C34332D005F900F /* Todo.swift */; };
+		488C006D2C343369005F900F /* ReuseIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C006C2C343369005F900F /* ReuseIdentifier.swift */; };
+		488C006F2C343380005F900F /* BaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C006E2C343380005F900F /* BaseTableCell.swift */; };
+		488C00712C343397005F900F /* ListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00702C343397005F900F /* ListTableCell.swift */; };
+		488C00732C343BAE005F900F /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00722C343BAE005F900F /* BaseViewController.swift */; };
+		488C00752C343D1B005F900F /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00742C343D1B005F900F /* AddViewController.swift */; };
+		488C00782C343D9B005F900F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00772C343D9B005F900F /* BaseView.swift */; };
+		488C007A2C343DBB005F900F /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00792C343DBB005F900F /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +34,14 @@
 		488C00562C34306D005F900F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		488C00582C34306D005F900F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		488C005E2C343100005F900F /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		488C00682C34332D005F900F /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		488C006C2C343369005F900F /* ReuseIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReuseIdentifier.swift; sourceTree = "<group>"; };
+		488C006E2C343380005F900F /* BaseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCell.swift; sourceTree = "<group>"; };
+		488C00702C343397005F900F /* ListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableCell.swift; sourceTree = "<group>"; };
+		488C00722C343BAE005F900F /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		488C00742C343D1B005F900F /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		488C00772C343D9B005F900F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		488C00792C343DBB005F900F /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +77,10 @@
 		488C00492C34306B005F900F /* Reminder Project */ = {
 			isa = PBXGroup;
 			children = (
+				488C00762C343D87005F900F /* Views */,
+				488C006B2C343351005F900F /* Helpers */,
+				488C006A2C343344005F900F /* Cells */,
+				488C00672C34331E005F900F /* Database */,
 				488C00602C343140005F900F /* Controllers */,
 				488C004A2C34306B005F900F /* AppDelegate.swift */,
 				488C004C2C34306B005F900F /* SceneDelegate.swift */,
@@ -75,8 +95,44 @@
 			isa = PBXGroup;
 			children = (
 				488C004E2C34306B005F900F /* ListViewController.swift */,
+				488C00722C343BAE005F900F /* BaseViewController.swift */,
+				488C00742C343D1B005F900F /* AddViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		488C00672C34331E005F900F /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				488C00682C34332D005F900F /* Todo.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		488C006A2C343344005F900F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				488C006E2C343380005F900F /* BaseTableCell.swift */,
+				488C00702C343397005F900F /* ListTableCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		488C006B2C343351005F900F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				488C006C2C343369005F900F /* ReuseIdentifier.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		488C00762C343D87005F900F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				488C00772C343D9B005F900F /* BaseView.swift */,
+				488C00792C343DBB005F900F /* AddView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +215,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				488C004F2C34306B005F900F /* ListViewController.swift in Sources */,
+				488C006F2C343380005F900F /* BaseTableCell.swift in Sources */,
+				488C00752C343D1B005F900F /* AddViewController.swift in Sources */,
 				488C004B2C34306B005F900F /* AppDelegate.swift in Sources */,
 				488C004D2C34306B005F900F /* SceneDelegate.swift in Sources */,
+				488C00712C343397005F900F /* ListTableCell.swift in Sources */,
+				488C007A2C343DBB005F900F /* AddView.swift in Sources */,
+				488C00732C343BAE005F900F /* BaseViewController.swift in Sources */,
+				488C00782C343D9B005F900F /* BaseView.swift in Sources */,
+				488C006D2C343369005F900F /* ReuseIdentifier.swift in Sources */,
+				488C00692C34332D005F900F /* Todo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

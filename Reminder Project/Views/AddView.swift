@@ -12,27 +12,28 @@ final class AddView: BaseView {
     let titleTextField = {
         let textField = UITextField()
         textField.placeholder = "제목"
-        textField.backgroundColor = UIColor(red: 0.16, green: 0.16, blue: 0.16, alpha: 1.00)
+        textField.backgroundColor = AppColor.button
         return textField
     }()
     let contentTextView = {
         let textView = UITextView()
         textView.text = "메모"
-        textView.backgroundColor = UIColor(red: 0.16, green: 0.16, blue: 0.16, alpha: 1.00)
+        textView.backgroundColor = AppColor.button
         return textView
     }()
-    let deadLineTextField = {
-        let textField = UITextField()
-        textField.placeholder = "마감일"
-        textField.backgroundColor = UIColor(red: 0.16, green: 0.16, blue: 0.16, alpha: 1.00)
-        return textField
-    }()
+    
+    //마감일
+    let deadlineButtonView = TodoButtonView(title: "마감일")
+    let tagButtonView = TodoButtonView(title: "태그")
+    let priorityButtonView = TodoButtonView(title: "우선순위")
 
     
     override func configureHierarchy() {
         addSubview(titleTextField)
         addSubview(contentTextView)
-        addSubview(deadLineTextField)
+        addSubview(deadlineButtonView)
+        addSubview(tagButtonView)
+        addSubview(priorityButtonView)
     }
     
     override func configureLayout() {
@@ -45,11 +46,25 @@ final class AddView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
             make.height.equalTo(88)
         }
-        deadLineTextField.snp.makeConstraints { make in
+        deadlineButtonView.snp.makeConstraints { make in
             make.top.equalTo(contentTextView.snp.bottom).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
             make.height.equalTo(44)
         }
+        tagButtonView.snp.makeConstraints { make in
+            make.top.equalTo(deadlineButtonView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
+            make.height.equalTo(44)
+        }
+        priorityButtonView.snp.makeConstraints { make in
+            make.top.equalTo(tagButtonView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
+            make.height.equalTo(44)
+        }
+        priorityButtonView.contentLabel.snp.makeConstraints { make in
+            make.width.height.equalTo(25)
+        }
         
     }
+    
 }

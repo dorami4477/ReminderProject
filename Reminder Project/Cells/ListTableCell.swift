@@ -17,19 +17,25 @@ final class ListTableCell: BaseTableCell {
     
     private let titleLabel = {
         let label = UILabel()
-        label.textColor = .white
+        
         label.font = .boldSystemFont(ofSize: 16)
         return label
     }()
     private let contentLabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .darkGray
         label.font = .systemFont(ofSize: 14)
         return label
     }()
     private let dateLabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = .darkGray
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    private let tagLabel = {
+        let label = UILabel()
+        label.textColor = .darkGray
         label.font = .systemFont(ofSize: 14)
         return label
     }()
@@ -38,6 +44,7 @@ final class ListTableCell: BaseTableCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(contentLabel)
         contentView.addSubview(dateLabel)
+        contentView.addSubview(tagLabel)
     }
     override func configureLayout(){
         titleLabel.snp.makeConstraints { make in
@@ -51,6 +58,10 @@ final class ListTableCell: BaseTableCell {
         dateLabel.snp.makeConstraints { make in
             make.top.equalTo(contentLabel.snp.bottom).offset(5)
             make.horizontalEdges.equalToSuperview().inset(20)
+        }
+        tagLabel.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(5)
+            make.horizontalEdges.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(15)
         }
     }
@@ -62,5 +73,7 @@ final class ListTableCell: BaseTableCell {
         titleLabel.text = data?.title
         contentLabel.text = data?.content
         dateLabel.text = data?.registerDate
+        guard let data = data, let tag = data.memoTag else { return }
+        tagLabel.text = "#\(tag)"
     }
 }

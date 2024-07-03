@@ -44,7 +44,7 @@ final class ListViewController: BaseViewController {
         tableView.dataSource = self
         tableView.register(ListTableCell.self, forCellReuseIdentifier: ListTableCell.identifier)
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .black
+        
     }
     private func configureData(){
         list = realm.objects(Todo.self)

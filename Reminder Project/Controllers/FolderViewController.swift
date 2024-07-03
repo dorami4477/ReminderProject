@@ -6,41 +6,63 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class FolderViewController: BaseViewController {
 
-    let list = FolderData.shared.Folderlists
+    var todoList:Results<Todo>!
+    let realm = try! Realm()
     
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
+    var list = FolderData.shared.Folderlists
+    var folder1:Results<Todo>!
+    
+    let mainView = FolderView()
+    
+    override func loadView() {
+        view = mainView
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        setData()
         navigationItem.title = "title"
     }
-    override func configureHierarchy() {
-        view.addSubview(collectionView)
+    
+    override func configureView() {
+        mainView.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
-    override func configureLayout() {
-        collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeAreaLayoutGuide)
-        }
-    }
+
     private func configureCollectionView(){
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.register(FolderCollectionCell.self, forCellWithReuseIdentifier: FolderCollectionCell.identifier)
+        mainView.collectionView.delegate = self
+        mainView.collectionView.dataSource = self
+        mainView.collectionView.register(FolderCollectionCell.self, forCellWithReuseIdentifier: FolderCollectionCell.identifier)
     }
     
-    private func layout() -> UICollectionViewLayout{
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        let width = (UIScreen.main.bounds.width - 30) / 2
-        layout.itemSize = CGSize(width: width, height: 100)
-        layout.minimumLineSpacing = 10
-        layout.minimumInteritemSpacing = 10
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        return layout
+    @objc func addButtonTapped(){
+        let addVC = AddViewController()
+        addVC.delegate = self
+        let nav = UINavigationController(rootViewController: addVC)
+        present(nav, animated:true)
     }
+    
+    func setData(){
+        todoList = realm.objects(Todo.self)
+        //오늘
+        let today = getToday()
+        folder1 = todoList.where { $0.registerDate == today}
+        folder1 = todoList.where { $0.registerDate != today}
+        list[0].count = folder1.count
+        list[2].count = todoList.count
+        
+    }
+    
+    func getToday() -> String{
+            let myFormatter = DateFormatter()
+            myFormatter.dateFormat = "yyyy. M. d"
+            let dateString = myFormatter.string(from: Date())
+            return dateString
+        }
 }
 
 extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSource{
@@ -56,6 +78,24 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
+        switch indexPath.row{
+            case 0:
+            vc.list = folder1
+        default:
+            vc.list = todoList
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+
+extension FolderViewController:AddTodoDelegate{
+    func addTodo(data:Todo) {
+        try! self.realm.write {
+            self.realm.add(data)
+        }
+        setData()
+        mainView.collectionView.reloadData()
+    }
+    
 }

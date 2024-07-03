@@ -24,6 +24,8 @@ class FolderCollectionCell: UICollectionViewCell {
         configureLayout()
         configureUI()
     }
+    
+
 
     private func configureHierarchy(){
         contentView.addSubview(iconView)
@@ -53,7 +55,8 @@ class FolderCollectionCell: UICollectionViewCell {
         titleLabel.font = .systemFont(ofSize: 15)
         titleLabel.textColor = .gray
         countLabel.font = .boldSystemFont(ofSize: 20)
-
+        iconView.layer.cornerRadius = 12.5
+        iconView.clipsToBounds = true
     }
     
     private func configureData(){
@@ -61,8 +64,7 @@ class FolderCollectionCell: UICollectionViewCell {
         titleLabel.text = data.title
         countLabel.text = data.count.formatted()
         iconView.backgroundColor = data.color
-        iconView.layer.cornerRadius = iconView.frame.width / 2
-        iconView.clipsToBounds = true
+
     }
     
     required init?(coder: NSCoder) {

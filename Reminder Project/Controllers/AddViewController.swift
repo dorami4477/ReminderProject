@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import RealmSwift
 
 protocol AddTodoDelegate:AnyObject {
     func addTodo(data:Todo)
@@ -17,6 +17,8 @@ class AddViewController: BaseViewController {
     let mainView = AddView()
     weak var delegate:AddTodoDelegate?
     var priorty:Int = 2
+    
+    let realm = try! Realm()
     
     override func loadView() {
         view = mainView
@@ -40,7 +42,8 @@ class AddViewController: BaseViewController {
         guard let text = mainView.titleTextField.text else { return }
         if !text.trimmingCharacters(in: .whitespaces).isEmpty{
             let data = Todo(title: text, content: mainView.contentTextView.text, registerDate: mainView.deadlineButtonView.contentLabel.text, memoTag:mainView.tagButtonView.contentLabel.text, priority: priorty)
-            delegate?.addTodo(data: data)
+                delegate?.addTodo(data: data)
+
             dismiss(animated: true)
         }else{
             showAlert(title: "제목을 입력해주세요.", message: nil, buttonTitle: "확인") {

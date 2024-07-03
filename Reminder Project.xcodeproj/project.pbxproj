@@ -18,6 +18,7 @@
 		483150642C354B2300175847 /* FolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483150632C354B2300175847 /* FolderViewController.swift */; };
 		483150662C354CBC00175847 /* FolderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483150652C354CBC00175847 /* FolderCollectionCell.swift */; };
 		483150682C354D3000175847 /* Folder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483150672C354D3000175847 /* Folder.swift */; };
+		4831506A2C35594500175847 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483150692C35594500175847 /* FolderView.swift */; };
 		488C004B2C34306B005F900F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C004A2C34306B005F900F /* AppDelegate.swift */; };
 		488C004D2C34306B005F900F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C004C2C34306B005F900F /* SceneDelegate.swift */; };
 		488C004F2C34306B005F900F /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C004E2C34306B005F900F /* ListViewController.swift */; };
@@ -48,6 +49,7 @@
 		483150632C354B2300175847 /* FolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderViewController.swift; sourceTree = "<group>"; };
 		483150652C354CBC00175847 /* FolderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderCollectionCell.swift; sourceTree = "<group>"; };
 		483150672C354D3000175847 /* Folder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Folder.swift; sourceTree = "<group>"; };
+		483150692C35594500175847 /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		488C00472C34306B005F900F /* Reminder Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Reminder Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		488C004A2C34306B005F900F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		488C004C2C34306B005F900F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				483150572C35340500175847 /* TodoButtonView.swift */,
 				4831505F2C353CEC00175847 /* PriorityView.swift */,
 				483150612C353D3100175847 /* TagView.swift */,
+				483150692C35594500175847 /* FolderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,6 +266,7 @@
 				488C007A2C343DBB005F900F /* AddView.swift in Sources */,
 				483150662C354CBC00175847 /* FolderCollectionCell.swift in Sources */,
 				483150562C352D7300175847 /* DeadlineView.swift in Sources */,
+				4831506A2C35594500175847 /* FolderView.swift in Sources */,
 				488C00732C343BAE005F900F /* BaseViewController.swift in Sources */,
 				488C00782C343D9B005F900F /* BaseView.swift in Sources */,
 				483150642C354B2300175847 /* FolderViewController.swift in Sources */,

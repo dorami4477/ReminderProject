@@ -22,7 +22,8 @@ final class ListViewController: BaseViewController {
         configureHierarchy()
         configureLayout()
         configureTableView()
-        configureData()
+       // configureData()
+
     }
     override func configureHierarchy() {
         view.addSubview(tableView)
@@ -35,7 +36,7 @@ final class ListViewController: BaseViewController {
     }
     override func configureView() {
         title = "전체"
-        let add = UIBarButtonItem(title:"add", style: .plain, target: self, action: #selector(addButtonTapped))
+        let add = UIBarButtonItem(image:UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = add
     }
     
@@ -50,12 +51,16 @@ final class ListViewController: BaseViewController {
         list = realm.objects(Todo.self)
     }
     
-    @objc func addButtonTapped(){
+    @objc func backButtonTapped(){
+        navigationController?.popViewController(animated: true)
+    }
+    
+    /*@objc func addButtonTapped(){
         let addVC = AddViewController()
         addVC.delegate = self
         let nav = UINavigationController(rootViewController: addVC)
         present(nav, animated:true)
-    }
+    }*/
 }
 
 extension ListViewController:UITableViewDelegate, UITableViewDataSource{
@@ -87,13 +92,4 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
 
 }
 
-extension ListViewController:AddTodoDelegate{
-    func addTodo(data:Todo) {
-        try! self.realm.write {
-            self.realm.add(data)
-        }
-        tableView.reloadData()
-    }
-    
-    
-}
+

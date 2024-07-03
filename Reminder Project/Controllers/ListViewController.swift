@@ -14,15 +14,21 @@ final class ListViewController: BaseViewController {
 
     private let tableView = UITableView()
     
-    var list:Results<Todo>!
+    var list:Results<Todo>!{
+        didSet{
+            filteredList = list
+        }
+    }
+    var filteredList:Results<Todo>!
     let realm = try! Realm()
+    var rightBarButtonItem = UIBarButtonItem()
+    var sortedBy: Int = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
         configureLayout()
         configureTableView()
-       // configureData()
 
     }
     override func configureHierarchy() {
@@ -36,8 +42,10 @@ final class ListViewController: BaseViewController {
     }
     override func configureView() {
         title = "전체"
-        let add = UIBarButtonItem(image:UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
-        navigationItem.leftBarButtonItem = add
+        let back = UIBarButtonItem(image:UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
+        navigationItem.leftBarButtonItem = back
+        let more = UIBarButtonItem(image:UIImage(systemName: "ellipsis.circle") ,menu: createMenu())
+        navigationItem.rightBarButtonItem = more
     }
     
     private func configureTableView(){
@@ -47,30 +55,75 @@ final class ListViewController: BaseViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
     }
-    private func configureData(){
-        list = realm.objects(Todo.self)
-    }
     
     @objc func backButtonTapped(){
         navigationController?.popViewController(animated: true)
     }
     
-    /*@objc func addButtonTapped(){
-        let addVC = AddViewController()
-        addVC.delegate = self
-        let nav = UINavigationController(rootViewController: addVC)
-        present(nav, animated:true)
-    }*/
+    @objc func moreButtonTapped(){
+        
+    }
+
+    //*필터 정리 필요!
+    private func createMenu(actionTitle: String? = nil) -> UIMenu {
+        let menu = UIMenu(title: "Sorted by", children: [
+            UIAction(title: "마감일 순") { [unowned self] action in
+                self.rightBarButtonItem.menu = createMenu(actionTitle: action.title)
+                sortedBy = 1
+                arragingData(title: action.title)
+                tableView.reloadData()
+            },
+            UIAction(title: "제목 순") { [unowned self] action in
+                self.rightBarButtonItem.menu = createMenu(actionTitle: action.title)
+                sortedBy = 2
+                arragingData(title: action.title)
+                tableView.reloadData()
+            },
+            UIAction(title: "우선순위 순") { [unowned self] action in
+                self.rightBarButtonItem.menu = createMenu(actionTitle: action.title)
+                sortedBy = 3
+                arragingData(title: action.title)
+                print(action.title, action.state == .on)
+                tableView.reloadData()
+            }
+        ])
+        
+        if let actionTitle = actionTitle {
+            menu.children.forEach { action in
+                guard let action = action as? UIAction else {
+                    return
+                }
+                if action.title == actionTitle {
+                    action.state = .on
+                }
+            }
+        } else {
+            let action = menu.children.first as? UIAction
+            action?.state = .on
+        }
+        
+        return menu
+    }
+    
+    func arragingData(title: String){
+        if title == "마감일 순"{
+            filteredList = list
+        }else if title == "제목 순"{
+            filteredList = list.sorted(byKeyPath: "title", ascending: true)
+        }else if title == "우선순위 순"{
+            filteredList = list.sorted(byKeyPath: "priority", ascending: false)
+        }
+    }
 }
 
 extension ListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return list.count
+        return filteredList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableCell.identifier, for: indexPath) as! ListTableCell
-        cell.data = list[indexPath.row]
+        cell.data = filteredList[indexPath.row]
         return cell
     }
     

@@ -15,6 +15,7 @@ final class FolderViewController: BaseViewController {
     
     var list = FolderData.shared.Folderlists
     var folder1:Results<Todo>!
+    var folder2:Results<Todo>!
     
     let mainView = FolderView()
     
@@ -47,19 +48,20 @@ final class FolderViewController: BaseViewController {
     }
     
     func setData(){
-        todoList = realm.objects(Todo.self)
+        todoList = realm.objects(Todo.self).sorted(byKeyPath: "registerDate", ascending: false)
         //오늘
         let today = getToday()
-        folder1 = todoList.where { $0.registerDate == today}
-        folder1 = todoList.where { $0.registerDate != today}
+        folder1 = todoList.where { $0.registerDate == today}.sorted(byKeyPath: "registerDate", ascending: false)
+        folder2 = todoList.where { $0.registerDate != today}.sorted(byKeyPath: "registerDate", ascending: false)
         list[0].count = folder1.count
+        list[1].count = folder2.count
         list[2].count = todoList.count
         
     }
     
     func getToday() -> String{
             let myFormatter = DateFormatter()
-            myFormatter.dateFormat = "yyyy. M. d"
+            myFormatter.dateFormat = "yyyy. MM. dd"
             let dateString = myFormatter.string(from: Date())
             return dateString
         }
@@ -81,6 +83,8 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
         switch indexPath.row{
             case 0:
             vc.list = folder1
+        case 1:
+            vc.list = folder2
         default:
             vc.list = todoList
         }

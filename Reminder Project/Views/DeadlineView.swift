@@ -10,7 +10,10 @@ import UIKit
 class DeadlineView: BaseView {
 
     let picker = {
-        let picker = UIPickerView()
+        let picker = UIDatePicker()
+        picker.preferredDatePickerStyle = .wheels
+        picker.datePickerMode = .date
+        picker.locale = Locale(identifier: "ko-KR")
         picker.backgroundColor = AppColor.button
         return picker
     }()

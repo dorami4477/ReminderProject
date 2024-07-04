@@ -11,7 +11,7 @@ class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         configureHierarchy()
         configureLayout()
         configureView()
@@ -36,5 +36,6 @@ class BaseViewController: UIViewController {
         
         present(alert, animated: true)
     }
+    
      
 }

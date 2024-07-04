@@ -21,9 +21,7 @@ final class ListViewController: BaseViewController {
     }
     var filteredList:Results<Todo>!
     let realm = try! Realm()
-    var rightBarButtonItem = UIBarButtonItem()
-    var sortedBy: Int = 1
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -44,7 +42,7 @@ final class ListViewController: BaseViewController {
         title = "전체"
         let back = UIBarButtonItem(image:UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = back
-        let more = UIBarButtonItem(image:UIImage(systemName: "ellipsis.circle") ,menu: createMenu())
+        let more = UIBarButtonItem(image:UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(moreButtonTapped))
         navigationItem.rightBarButtonItem = more
     }
     
@@ -61,59 +59,43 @@ final class ListViewController: BaseViewController {
     }
     
     @objc func moreButtonTapped(){
-        
+        let alert = UIAlertController(title: "Sorted by", message: nil, preferredStyle: .actionSheet)
+            
+        let button1 = UIAlertAction(title: "마감일 순", style: .default){ _ in
+            self.arragingData(sort: 0)
+            self.tableView.reloadData()
+        }
+        let button2 = UIAlertAction(title: "제목 순", style: .default){ _ in
+            self.arragingData(sort: 1)
+            self.tableView.reloadData()
+        }
+        let button3 = UIAlertAction(title: "우선순위 순", style: .default){ _ in
+            self.arragingData(sort: 2)
+            self.tableView.reloadData()
+        }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            
+            alert.addAction(button1)
+            alert.addAction(button2)
+            alert.addAction(button3)
+            alert.addAction(cancel)
+            
+            present(alert, animated: true)
     }
 
-    //*필터 정리 필요!
-    private func createMenu(actionTitle: String? = nil) -> UIMenu {
-        let menu = UIMenu(title: "Sorted by", children: [
-            UIAction(title: "마감일 순") { [unowned self] action in
-                self.rightBarButtonItem.menu = createMenu(actionTitle: action.title)
-                sortedBy = 1
-                arragingData(title: action.title)
-                tableView.reloadData()
-            },
-            UIAction(title: "제목 순") { [unowned self] action in
-                self.rightBarButtonItem.menu = createMenu(actionTitle: action.title)
-                sortedBy = 2
-                arragingData(title: action.title)
-                tableView.reloadData()
-            },
-            UIAction(title: "우선순위 순") { [unowned self] action in
-                self.rightBarButtonItem.menu = createMenu(actionTitle: action.title)
-                sortedBy = 3
-                arragingData(title: action.title)
-                print(action.title, action.state == .on)
-                tableView.reloadData()
-            }
-        ])
-        
-        if let actionTitle = actionTitle {
-            menu.children.forEach { action in
-                guard let action = action as? UIAction else {
-                    return
-                }
-                if action.title == actionTitle {
-                    action.state = .on
-                }
-            }
-        } else {
-            let action = menu.children.first as? UIAction
-            action?.state = .on
-        }
-        
-        return menu
-    }
-    
-    func arragingData(title: String){
-        if title == "마감일 순"{
+    func arragingData(sort: Int){
+        switch sort{
+        case 0:
             filteredList = list
-        }else if title == "제목 순"{
+        case 1:
             filteredList = list.sorted(byKeyPath: "title", ascending: true)
-        }else if title == "우선순위 순"{
-            filteredList = list.sorted(byKeyPath: "priority", ascending: false)
+        case 2:
+            filteredList = list.sorted(byKeyPath: "priority", ascending: true)
+        default:
+            filteredList = list
         }
     }
+
 }
 
 extension ListViewController:UITableViewDelegate, UITableViewDataSource{

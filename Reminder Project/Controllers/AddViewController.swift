@@ -87,17 +87,17 @@ class AddViewController: BaseViewController {
         vc.priorityValue = { value in
             switch value{
             case 0:
-                self.mainView.priorityButtonView.contentLabel.backgroundColor = .red
+                self.mainView.priorityButtonView.contentLabel.text = "High"
                 self.priorty = 0
             case 1:
-                self.mainView.priorityButtonView.contentLabel.backgroundColor = .yellow
+                self.mainView.priorityButtonView.contentLabel.text = "Middle"
                 self.priorty = 1
             case 2:
-                self.mainView.priorityButtonView.contentLabel.backgroundColor = .brown
+                self.mainView.priorityButtonView.contentLabel.text = "Low"
                 self.priorty = 2
             default:
-                self.mainView.priorityButtonView.contentLabel.backgroundColor = .brown
-                self.priorty = 0
+                self.mainView.priorityButtonView.contentLabel.text = "Low"
+                self.priorty = 2
             }
         }
         present(vc, animated: true)

@@ -9,5 +9,6 @@ import UIKit
 
 
 enum AppColor{
-    static let button = UIColor(red: 0.00, green: 0.79, blue: 0.47, alpha: 1.00)
+    static let button = UIColor(red: 0.15, green: 0.15, blue: 0.16, alpha: 1.00)
+
 }

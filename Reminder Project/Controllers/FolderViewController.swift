@@ -28,6 +28,7 @@ final class FolderViewController: BaseViewController {
         configureCollectionView()
         setData()
         navigationItem.title = "title"
+        print(realm.configuration.fileURL!)
     }
     
     override func configureView() {
@@ -48,11 +49,11 @@ final class FolderViewController: BaseViewController {
     }
     
     func setData(){
-        todoList = realm.objects(Todo.self).sorted(byKeyPath: "registerDate", ascending: false)
+        todoList = realm.objects(Todo.self).sorted(byKeyPath: "registerDate", ascending: true)
         //오늘
         let today = getToday()
-        folder1 = todoList.where { $0.registerDate == today}.sorted(byKeyPath: "registerDate", ascending: false)
-        folder2 = todoList.where { $0.registerDate != today}.sorted(byKeyPath: "registerDate", ascending: false)
+        folder1 = todoList.where { $0.registerDate == today}.sorted(byKeyPath: "registerDate", ascending: true)
+        folder2 = todoList.where { $0.registerDate != today}.sorted(byKeyPath: "registerDate", ascending: true)
         list[0].count = folder1.count
         list[1].count = folder2.count
         list[2].count = todoList.count

@@ -61,10 +61,18 @@ final class AddView: BaseView {
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
             make.height.equalTo(44)
         }
-        priorityButtonView.contentLabel.snp.makeConstraints { make in
-            make.width.height.equalTo(25)
-        }
-        
+    }
+    
+    func getToday() -> String{
+            let myFormatter = DateFormatter()
+            myFormatter.dateFormat = "yyyy. MM. dd"
+            let savedDateString = myFormatter.string(from: Date())
+            return savedDateString
+    }
+    
+    override func configureView() {
+        deadlineButtonView.contentLabel.text = getToday()
+        priorityButtonView.contentLabel.text = "Low"
     }
     
 }

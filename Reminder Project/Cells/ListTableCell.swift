@@ -70,10 +70,20 @@ final class ListTableCell: BaseTableCell {
     }
     
     func configureData(){
-        titleLabel.text = data?.title
-        contentLabel.text = data?.content
-        dateLabel.text = data?.registerDate
-        guard let data = data, let tag = data.memoTag else { return }
-        tagLabel.text = "#\(tag)"
+        guard let data else { return }
+        contentLabel.text = data.content
+        dateLabel.text = data.registerDate
+        tagLabel.text = "#\(data.memoTag ?? "")"
+        
+        switch data.priority{
+        case 0:
+            titleLabel.text = "!!! " + data.title
+        case 1:
+            titleLabel.text = "!! " + data.title
+        case 2:
+            titleLabel.text = "! " + data.title
+        default:
+            titleLabel.text = "! " + data.title
+        }
     }
 }

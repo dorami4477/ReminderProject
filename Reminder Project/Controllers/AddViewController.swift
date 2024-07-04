@@ -41,7 +41,8 @@ class AddViewController: BaseViewController {
     @objc func saveButtonTapped(){
         guard let text = mainView.titleTextField.text else { return }
         if !text.trimmingCharacters(in: .whitespaces).isEmpty{
-            let data = Todo(title: text, content: mainView.contentTextView.text, registerDate: mainView.deadlineButtonView.contentLabel.text, memoTag:mainView.tagButtonView.contentLabel.text, priority: priorty)
+            guard let deadLine = mainView.deadlineButtonView.contentLabel.text else { return }
+            let data = Todo(title: text, content: mainView.contentTextView.text, registerDate: deadLine, memoTag:mainView.tagButtonView.contentLabel.text, priority: priorty)
                 delegate?.addTodo(data: data)
 
             dismiss(animated: true)

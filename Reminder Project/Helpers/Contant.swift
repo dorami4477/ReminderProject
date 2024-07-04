@@ -12,3 +12,9 @@ enum AppColor{
     static let button = UIColor(red: 0.15, green: 0.15, blue: 0.16, alpha: 1.00)
 
 }
+
+
+enum Icon{
+    static let incomplete = "circle"
+    static let completed = "checkmark.circle.fill"
+}

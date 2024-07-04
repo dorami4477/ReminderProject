@@ -44,6 +44,7 @@ final class ListViewController: BaseViewController {
         navigationItem.leftBarButtonItem = back
         let more = UIBarButtonItem(image:UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(moreButtonTapped))
         navigationItem.rightBarButtonItem = more
+    
     }
     
     private func configureTableView(){
@@ -95,6 +96,7 @@ final class ListViewController: BaseViewController {
             filteredList = list
         }
     }
+    
 
 }
 
@@ -106,6 +108,7 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableCell.identifier, for: indexPath) as! ListTableCell
         cell.data = filteredList[indexPath.row]
+        cell.selectionStyle = .none
         return cell
     }
     
@@ -123,6 +126,18 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
         
         delete.backgroundColor = .red
         return UISwipeActionsConfiguration(actions: [delete])
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let data = filteredList[indexPath.row]
+        let complete = !data.complete
+          
+        try! realm.write {
+            realm.create(Todo.self, value: ["id":data.id, "complete": complete], update: .modified)
+        }
+        
+        let cell = tableView.cellForRow(at: indexPath) as! ListTableCell
+        cell.checkButtonTapped(filteredList[indexPath.row].complete)
     }
 
 }

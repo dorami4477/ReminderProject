@@ -35,6 +35,7 @@
 		488C00752C343D1B005F900F /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00742C343D1B005F900F /* AddViewController.swift */; };
 		488C00782C343D9B005F900F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00772C343D9B005F900F /* BaseView.swift */; };
 		488C007A2C343DBB005F900F /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00792C343DBB005F900F /* AddView.swift */; };
+		48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		488C00742C343D1B005F900F /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		488C00772C343D9B005F900F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		488C00792C343DBB005F900F /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				488C006C2C343369005F900F /* ReuseIdentifier.swift */,
 				483150592C35377900175847 /* Contant.swift */,
+				48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				488C00732C343BAE005F900F /* BaseViewController.swift in Sources */,
 				488C00782C343D9B005F900F /* BaseView.swift in Sources */,
 				483150642C354B2300175847 /* FolderViewController.swift in Sources */,
+				48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */,
 				4831505C2C35382200175847 /* TagViewController.swift in Sources */,
 				488C006D2C343369005F900F /* ReuseIdentifier.swift in Sources */,
 				488C00692C34332D005F900F /* Todo.swift in Sources */,

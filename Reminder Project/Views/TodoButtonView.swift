@@ -11,7 +11,7 @@ class TodoButtonView: BaseView {
 
     let buttonView = {
         let view = UIView()
-        view.backgroundColor = AppColor.button
+        view.backgroundColor = AppColor.ground
         view.layer.cornerRadius = 10
         view.clipsToBounds = true
         return view

@@ -15,9 +15,10 @@ class Todo: Object {
     @Persisted var registerDate: String
     @Persisted var memoTag: String?
     @Persisted var priority: Int
-    @Persisted var complete: Bool
+    @Persisted var completed: Bool
+    @Persisted var pinned: Bool
     
-    convenience init(title: String, content: String? = nil, registerDate: String, memoTag: String? = nil, priority: Int = 2, complete:Bool = false) {
+    convenience init(title: String, content: String? = nil, registerDate: String, memoTag: String? = nil, priority: Int = 2, complete:Bool = false, pinned:Bool = false) {
         self.init()
         self.id = id
         self.title = title
@@ -25,6 +26,7 @@ class Todo: Object {
         self.registerDate = registerDate
         self.memoTag = memoTag
         self.priority = priority
-        self.complete = complete
+        self.completed = complete
+        self.pinned = pinned
     }
 }

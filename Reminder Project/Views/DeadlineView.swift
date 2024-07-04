@@ -14,7 +14,7 @@ class DeadlineView: BaseView {
         picker.preferredDatePickerStyle = .wheels
         picker.datePickerMode = .date
         picker.locale = Locale(identifier: "ko-KR")
-        picker.backgroundColor = AppColor.button
+        picker.backgroundColor = AppColor.ground
         return picker
     }()
 

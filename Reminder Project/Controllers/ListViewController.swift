@@ -113,31 +113,43 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let data = self.realm.object(ofType: Todo.self, forPrimaryKey: self.filteredList[indexPath.row].id)!
+        //스와이프 삭제
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
-           
             self.showAlert(title: "삭제", message: "정말로 삭제 하시겠습니까?", buttonTitle: "삭제") {
-                let data = self.realm.object(ofType: Todo.self, forPrimaryKey: self.list[indexPath.row].id)!
                 try! self.realm.write {
                     self.realm.delete(data)
                 }
                 tableView.reloadData()
             }
         }
+        //스와이프 핀고정
+        let pinned = UIContextualAction(style: .normal, title: "핀고정") { action, view, completionHandler in
+            let pinned = !data.pinned
+            try! self.realm.write {
+                self.realm.create(Todo.self, value: ["id":data.id, "pinned": pinned], update: .modified)
+            }
+            completionHandler(true)
+        }
         
-        delete.backgroundColor = .red
-        return UISwipeActionsConfiguration(actions: [delete])
+        delete.backgroundColor = AppColor.red
+        pinned.backgroundColor = AppColor.yellow
+        delete.image = UIImage(systemName:Icon.delete)
+        pinned.image = data.pinned ? UIImage(systemName:Icon.pinned) : UIImage(systemName:Icon.unpinned)
+        return UISwipeActionsConfiguration(actions: [delete, pinned])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //완료 체크
         let data = filteredList[indexPath.row]
-        let complete = !data.complete
-          
-        try! realm.write {
-            realm.create(Todo.self, value: ["id":data.id, "complete": complete], update: .modified)
-        }
-        
+        let complete = !data.completed
         let cell = tableView.cellForRow(at: indexPath) as! ListTableCell
-        cell.checkButtonTapped(filteredList[indexPath.row].complete)
+        cell.checkButtonTapped(complete)
+        
+        try! realm.write {
+            realm.create(Todo.self, value: ["id":data.id, "completed": complete], update: .modified)
+        }
     }
 
 }

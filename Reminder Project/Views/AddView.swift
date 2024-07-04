@@ -12,13 +12,13 @@ final class AddView: BaseView {
     let titleTextField = {
         let textField = UITextField()
         textField.placeholder = "제목"
-        textField.backgroundColor = AppColor.button
+        textField.backgroundColor = AppColor.ground
         return textField
     }()
     let contentTextView = {
         let textView = UITextView()
         textView.text = "메모"
-        textView.backgroundColor = AppColor.button
+        textView.backgroundColor = AppColor.ground
         return textView
     }()
     

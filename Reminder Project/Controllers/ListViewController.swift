@@ -7,20 +7,17 @@
 
 import UIKit
 import SnapKit
-import RealmSwift
-
 
 final class ListViewController: BaseViewController {
 
     private let tableView = UITableView()
-    
-    var list:Results<Todo>!{
+    let repository = TodoRepository()
+    var filteredList:[Todo] = []
+    var list:[Todo] = []{
         didSet{
             filteredList = list
         }
     }
-    var filteredList:Results<Todo>!
-    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,19 +81,19 @@ final class ListViewController: BaseViewController {
             present(alert, animated: true)
     }
 
-    func arragingData(sort: Int){
+
+    func arragingData(sort:Int){
         switch sort{
         case 0:
             filteredList = list
         case 1:
-            filteredList = list.sorted(byKeyPath: "title", ascending: true)
+            filteredList = list.sorted{ $0.title < $1.title }
         case 2:
-            filteredList = list.sorted(byKeyPath: "priority", ascending: true)
+            filteredList = list.sorted{ $0.priority < $1.priority }
         default:
             filteredList = list
         }
     }
-    
 
 }
 
@@ -113,23 +110,20 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+        let data = self.filteredList[indexPath.row]
         
-        let data = self.realm.object(ofType: Todo.self, forPrimaryKey: self.filteredList[indexPath.row].id)!
         //스와이프 삭제
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             self.showAlert(title: "삭제", message: "정말로 삭제 하시겠습니까?", buttonTitle: "삭제") {
-                try! self.realm.write {
-                    self.realm.delete(data)
-                }
+                self.repository.deleteTodo(dataID: data.id)
                 tableView.reloadData()
             }
         }
         //스와이프 핀고정
         let pinned = UIContextualAction(style: .normal, title: "핀고정") { action, view, completionHandler in
             let pinned = !data.pinned
-            try! self.realm.write {
-                self.realm.create(Todo.self, value: ["id":data.id, "pinned": pinned], update: .modified)
-            }
+            self.repository.updateCell(id: data.id, cellName: "pinned", cellValue: pinned)
             completionHandler(true)
         }
         
@@ -146,10 +140,7 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
         let complete = !data.completed
         let cell = tableView.cellForRow(at: indexPath) as! ListTableCell
         cell.checkButtonTapped(complete)
-        
-        try! realm.write {
-            realm.create(Todo.self, value: ["id":data.id, "completed": complete], update: .modified)
-        }
+        repository.updateCell(id: data.id, cellName: "completed", cellValue: complete)
     }
 
 }

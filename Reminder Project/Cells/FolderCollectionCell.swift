@@ -49,7 +49,7 @@ class FolderCollectionCell: UICollectionViewCell {
         }
     }
     private func configureUI(){
-        backgroundColor = .lightGray
+        backgroundColor = AppColor.ground
         self.layer.cornerRadius = 20
         iconImageView.tintColor = .white
         titleLabel.font = .systemFont(ofSize: 15)

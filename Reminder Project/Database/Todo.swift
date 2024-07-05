@@ -18,6 +18,10 @@ class Todo: Object {
     @Persisted var completed: Bool
     @Persisted var pinned: Bool
     
+    var regDateString:String{
+        return registerDate
+    }
+    
     convenience init(title: String, content: String? = nil, registerDate: String, memoTag: String? = nil, priority: Int = 2, complete:Bool = false, pinned:Bool = false) {
         self.init()
         self.id = id

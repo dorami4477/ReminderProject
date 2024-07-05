@@ -83,7 +83,7 @@ final class ListTableCell: BaseTableCell {
     func configureData(){
         guard let data else { return }
         contentLabel.text = data.content
-        dateLabel.text = data.registerDate
+        dateLabel.text = GetDate.shared.dateToString(data.registerDate)
         tagLabel.text = (data.memoTag != nil) ? "#\(data.memoTag!)" : ""
         
         switch data.priority{

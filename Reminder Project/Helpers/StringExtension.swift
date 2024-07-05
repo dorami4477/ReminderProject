@@ -18,5 +18,5 @@ extension String{
             attributeString.removeAttribute(NSAttributedString.Key.strikethroughStyle, range: NSMakeRange(0, attributeString.length))
             return attributeString
         }
-
+    
 }

@@ -12,17 +12,14 @@ class Todo: Object {
     @Persisted(primaryKey: true) var id: ObjectId
     @Persisted var title: String
     @Persisted var content: String?
-    @Persisted var registerDate: String
+    @Persisted var registerDate: Int
     @Persisted var memoTag: String?
     @Persisted var priority: Int
     @Persisted var completed: Bool
     @Persisted var pinned: Bool
     
-    var regDateString:String{
-        return registerDate
-    }
-    
-    convenience init(title: String, content: String? = nil, registerDate: String, memoTag: String? = nil, priority: Int = 2, complete:Bool = false, pinned:Bool = false) {
+
+    convenience init(title: String, content: String? = nil, registerDate: Int, memoTag: String? = nil, priority: Int = 2, complete:Bool = false, pinned:Bool = false) {
         self.init()
         self.id = id
         self.title = title

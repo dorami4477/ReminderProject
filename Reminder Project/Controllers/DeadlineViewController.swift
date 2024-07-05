@@ -8,11 +8,12 @@
 import UIKit
 
 class DeadlineViewController: BaseViewController {
-    var selectedDate:String = ""
+
+    var selectedDate:Int = 0
     
     private let mainView = DeadlineView()
     
-    var deadLine:((String) -> Void)?
+    var deadLine:((Int) -> Void)?
     
     override func loadView() {
         view = mainView
@@ -30,11 +31,11 @@ class DeadlineViewController: BaseViewController {
     @objc func setDate(_ sender: UIDatePicker){
         selectedDate = dateFormat(date: sender.date)
     }
-    
-    private func dateFormat(date: Date) -> String {
+
+    private func dateFormat(date: Date) -> Int {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy. MM. dd"
-        return formatter.string(from: date)
+        formatter.dateFormat = "yyyyMMdd"
+        return Int(formatter.string(from: date))!
     }
 
 }

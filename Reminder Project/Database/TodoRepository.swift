@@ -42,13 +42,12 @@ class TodoRepository{
     
     //Read
     func setFolderData(_ folder:Int) -> [Todo]{
-        let today = GetDate.shared.getToday()
         var list:Results<Todo>!
         switch folder{
         case 0:
-            list = realm.objects(Todo.self).where { $0.registerDate == today}.sorted(byKeyPath: "registerDate", ascending: true)
+            list = realm.objects(Todo.self).where { $0.registerDate == GetDate.shared.todayInt }.sorted(byKeyPath: "registerDate", ascending: true)
         case 1:
-            list = realm.objects(Todo.self).where { $0.registerDate != today }.sorted(byKeyPath: "registerDate", ascending: true)
+            list = realm.objects(Todo.self).where { $0.registerDate > GetDate.shared.todayInt }.sorted(byKeyPath: "registerDate", ascending: true)
         case 2:
             list = realm.objects(Todo.self).sorted(byKeyPath: "registerDate", ascending: true)
         case 3:
@@ -60,5 +59,7 @@ class TodoRepository{
         }
         return Array(list)
     }
+    
+    
 
 }

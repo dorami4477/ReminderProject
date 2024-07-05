@@ -16,7 +16,7 @@ class AddViewController: BaseViewController {
     let mainView = AddView()
     weak var delegate:AddTodoDelegate?
     var priorty:Int = 2
-
+    var deadLine:Int = 0
     let repository = TodoRepository()
     
     override func loadView() {
@@ -40,7 +40,6 @@ class AddViewController: BaseViewController {
     @objc func saveButtonTapped(){
         guard let text = mainView.titleTextField.text else { return }
         if !text.trimmingCharacters(in: .whitespaces).isEmpty{
-            guard let deadLine = mainView.deadlineButtonView.contentLabel.text else { return }
             let data = Todo(title: text, content: mainView.contentTextView.text, registerDate: deadLine, memoTag:mainView.tagButtonView.contentLabel.text, priority: priorty)
                 delegate?.addTodo(data: data)
             dismiss(animated: true)
@@ -68,7 +67,9 @@ class AddViewController: BaseViewController {
     @objc func deadlineButtonTapped(){
         let vc = DeadlineViewController()
         vc.deadLine = { value in
-            self.mainView.deadlineButtonView.contentLabel.text = value
+            self.deadLine = value
+            let stringValue = GetDate.shared.dateToString(value)
+            self.mainView.deadlineButtonView.contentLabel.text = stringValue
         }
         present(vc, animated: true)
     }

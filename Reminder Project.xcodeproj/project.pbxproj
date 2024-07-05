@@ -36,7 +36,7 @@
 		488C00782C343D9B005F900F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00772C343D9B005F900F /* BaseView.swift */; };
 		488C007A2C343DBB005F900F /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00792C343DBB005F900F /* AddView.swift */; };
 		48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */; };
-		48ED4A5B2C377B0C00DBA7F5 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5A2C377B0C00DBA7F5 /* DateExtension.swift */; };
+		48ED4A5B2C377B0C00DBA7F5 /* DateSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */; };
 		48ED4A5D2C37CF2900DBA7F5 /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,7 +70,7 @@
 		488C00772C343D9B005F900F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		488C00792C343DBB005F900F /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
-		48ED4A5A2C377B0C00DBA7F5 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
+		48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSingleton.swift; sourceTree = "<group>"; };
 		48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +161,7 @@
 				488C006C2C343369005F900F /* ReuseIdentifier.swift */,
 				483150592C35377900175847 /* Contant.swift */,
 				48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */,
-				48ED4A5A2C377B0C00DBA7F5 /* DateExtension.swift */,
+				48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -270,7 +270,7 @@
 				488C004D2C34306B005F900F /* SceneDelegate.swift in Sources */,
 				4831505A2C35377900175847 /* Contant.swift in Sources */,
 				483150582C35340500175847 /* TodoButtonView.swift in Sources */,
-				48ED4A5B2C377B0C00DBA7F5 /* DateExtension.swift in Sources */,
+				48ED4A5B2C377B0C00DBA7F5 /* DateSingleton.swift in Sources */,
 				488C00712C343397005F900F /* ListTableCell.swift in Sources */,
 				48ED4A5D2C37CF2900DBA7F5 /* TodoRepository.swift in Sources */,
 				483150682C354D3000175847 /* Folder.swift in Sources */,

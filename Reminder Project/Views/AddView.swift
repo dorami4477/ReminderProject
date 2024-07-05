@@ -22,10 +22,17 @@ final class AddView: BaseView {
         return textView
     }()
     
-    //마감일
     let deadlineButtonView = TodoButtonView(title: "마감일")
     let tagButtonView = TodoButtonView(title: "태그")
     let priorityButtonView = TodoButtonView(title: "우선순위")
+    let imageButtonView = TodoButtonView(title: "이미지 추가")
+    
+    let imageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        return image
+    }()
 
     
     override func configureHierarchy() {
@@ -34,6 +41,8 @@ final class AddView: BaseView {
         addSubview(deadlineButtonView)
         addSubview(tagButtonView)
         addSubview(priorityButtonView)
+        addSubview(imageButtonView)
+        imageButtonView.addSubview(imageView)
     }
     
     override func configureLayout() {
@@ -49,29 +58,34 @@ final class AddView: BaseView {
         deadlineButtonView.snp.makeConstraints { make in
             make.top.equalTo(contentTextView.snp.bottom).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
-            make.height.equalTo(44)
+            make.height.equalTo(48)
         }
         tagButtonView.snp.makeConstraints { make in
             make.top.equalTo(deadlineButtonView.snp.bottom).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
-            make.height.equalTo(44)
+            make.height.equalTo(48)
         }
         priorityButtonView.snp.makeConstraints { make in
             make.top.equalTo(tagButtonView.snp.bottom).offset(15)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
-            make.height.equalTo(44)
+            make.height.equalTo(48)
+        }
+        imageButtonView.snp.makeConstraints { make in
+            make.top.equalTo(priorityButtonView.snp.bottom).offset(15)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
+            make.height.equalTo(48)
+        }
+        imageView.snp.makeConstraints { make in
+            make.width.height.equalTo(40)
+            make.trailing.equalTo(imageButtonView.contentLabel.snp.trailing)
+            make.centerY.equalToSuperview()
         }
     }
     
-    func getToday() -> String{
-            let myFormatter = DateFormatter()
-            myFormatter.dateFormat = "yyyy. MM. dd"
-            let savedDateString = myFormatter.string(from: Date())
-            return savedDateString
-    }
+
     
     override func configureView() {
-        deadlineButtonView.contentLabel.text = getToday()
+        deadlineButtonView.contentLabel.text = GetDate.shared.getToday()
         priorityButtonView.contentLabel.text = "Low"
     }
     

@@ -19,11 +19,13 @@ class TodoButtonView: BaseView {
     let titleLabel = {
         let label = UILabel()
         label.textColor = .white
+        label.font = .systemFont(ofSize: 15)
         return label
     }()
     let contentLabel = {
         let label = UILabel()
         label.textColor = .white
+        label.font = .systemFont(ofSize: 15)
         return label
     }()
     let iconImageView = {
@@ -50,7 +52,7 @@ class TodoButtonView: BaseView {
             make.edges.equalToSuperview()
         }
         titleLabel.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(10)
+            make.leading.equalToSuperview().inset(20)
             make.centerY.equalToSuperview()
         }
         contentLabel.snp.makeConstraints { make in
@@ -58,7 +60,7 @@ class TodoButtonView: BaseView {
             make.centerY.equalToSuperview()
         }
         iconImageView.snp.makeConstraints { make in
-            make.trailing.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(20)
             make.centerY.equalToSuperview()
         }
         

@@ -36,7 +36,7 @@ class FolderCollectionCell: UICollectionViewCell {
     private func configureLayout(){
         iconView.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(15)
-            make.height.width.equalTo(25)
+            make.height.width.equalTo(30)
         }
         iconImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(3)
@@ -50,12 +50,12 @@ class FolderCollectionCell: UICollectionViewCell {
     }
     private func configureUI(){
         backgroundColor = AppColor.ground
-        self.layer.cornerRadius = 20
+        self.layer.cornerRadius = 15
         iconImageView.tintColor = .white
         titleLabel.font = .systemFont(ofSize: 15)
         titleLabel.textColor = .gray
-        countLabel.font = .boldSystemFont(ofSize: 20)
-        iconView.layer.cornerRadius = 12.5
+        countLabel.font = .boldSystemFont(ofSize: 25)
+        iconView.layer.cornerRadius = 15
         iconView.clipsToBounds = true
     }
     

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol AddTodoDelegate:AnyObject {
     func addTodo(data:Todo)
@@ -18,6 +19,8 @@ class AddViewController: BaseViewController {
     var priorty:Int = 2
     var deadLine:Int = GetDate.shared.todayInt
     let repository = TodoRepository()
+    
+    
     
     override func loadView() {
         view = mainView
@@ -42,6 +45,9 @@ class AddViewController: BaseViewController {
         if !text.trimmingCharacters(in: .whitespaces).isEmpty{
             let data = Todo(title: text, content: mainView.contentTextView.text, registerDate: deadLine, memoTag:mainView.tagButtonView.contentLabel.text, priority: priorty)
                 delegate?.addTodo(data: data)
+            if let image = mainView.imageView.image{
+                ImageFileManager.shared.saveImageToDocument(image: image, filename: "\(data.id)")
+            }
             dismiss(animated: true)
         }else{
             showAlert(title: "제목을 입력해주세요.", message: nil, buttonTitle: "확인") {
@@ -54,14 +60,15 @@ class AddViewController: BaseViewController {
         dismiss(animated: true)
     }
     
-    
     func setGesture(){
         let tapGesture1: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(deadlineButtonTapped))
         let tapGesture2: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tagButtonTapped))
         let tapGesture3: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(priorityButtonTapped))
+        let tapGesture4: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageButtonTapped))
         mainView.deadlineButtonView.addGestureRecognizer(tapGesture1)
         mainView.tagButtonView.addGestureRecognizer(tapGesture2)
         mainView.priorityButtonView.addGestureRecognizer(tapGesture3)
+        mainView.imageButtonView.addGestureRecognizer(tapGesture4)
     }
     
     @objc func deadlineButtonTapped(){
@@ -101,5 +108,29 @@ class AddViewController: BaseViewController {
             }
         }
         present(vc, animated: true)
+    }
+    
+    @objc func imageButtonTapped(){
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 3
+        configuration.filter = .any(of: [.screenshots, .images])
+
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+}
+
+extension AddViewController:PHPickerViewControllerDelegate{
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+
+        if let itemProvider = results.first?.itemProvider, itemProvider.canLoadObject(ofClass: UIImage.self){
+            itemProvider.loadObject(ofClass: UIImage.self) { image, error in
+                DispatchQueue.main.async {
+                    self.mainView.imageView.image = image as? UIImage
+                }
+            }
+        }
     }
 }

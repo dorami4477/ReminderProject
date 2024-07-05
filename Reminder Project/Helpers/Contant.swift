@@ -24,4 +24,5 @@ enum Icon{
     static let delete = "trash"
     static let unpinned = "flag"
     static let pinned = "flag.fill"
+    static let calendar = "calendar"
 }

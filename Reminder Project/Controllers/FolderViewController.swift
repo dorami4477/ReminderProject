@@ -26,7 +26,8 @@ final class FolderViewController: BaseViewController {
     override func configureView() {
         navigationItem.title = "전체"
         navigationController?.navigationBar.prefersLargeTitles = true
-        
+        let calender = UIBarButtonItem(image:UIImage(systemName: Icon.calendar), style: .plain, target: self, action: #selector(calenderButtonTapped))
+        navigationItem.rightBarButtonItem = calender
         mainView.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
 
@@ -41,6 +42,12 @@ final class FolderViewController: BaseViewController {
         addVC.delegate = self
         let nav = UINavigationController(rootViewController: addVC)
         present(nav, animated:true)
+    }
+    
+    @objc private func calenderButtonTapped(){
+        print(#function)
+        let vc = CalendarViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

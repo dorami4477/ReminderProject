@@ -125,6 +125,7 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
         //스와이프 삭제
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             self.showAlert(title: "삭제", message: "정말로 삭제 하시겠습니까?", buttonTitle: "삭제") {
+                ImageFileManager.shared.removeImageFromDocument(filename: "\(data.id)")
                 self.repository.deleteTodo(dataID: data.id)
                 tableView.reloadData()
             }

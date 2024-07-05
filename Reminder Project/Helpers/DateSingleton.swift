@@ -33,4 +33,11 @@ class GetDate{
         
         return formatter.string(from: tempDate)
     }
+    
+    func getToday() -> String{
+            let myFormatter = DateFormatter()
+            myFormatter.dateFormat = "yyyy. MM. dd"
+            let savedDateString = myFormatter.string(from: Date())
+            return savedDateString
+    }
 }

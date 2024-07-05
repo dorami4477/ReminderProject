@@ -22,15 +22,19 @@ class DeadlineViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainView.picker.addTarget(self, action: #selector(setDate), for: .valueChanged)
+        mainView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        //print(deadLine)
         deadLine?(selectedDate)
     }
 
     @objc func setDate(_ sender: UIDatePicker){
         selectedDate = dateFormat(date: sender.date)
+    }
+    
+    @objc func backButtonTapped(){
+        dismiss(animated: true)
     }
 
     private func dateFormat(date: Date) -> Int {

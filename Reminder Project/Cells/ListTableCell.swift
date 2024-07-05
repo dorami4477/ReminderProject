@@ -45,12 +45,20 @@ final class ListTableCell: BaseTableCell {
         return label
     }()
     
+    private let mainImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
+        return image
+    }()
+    
     override func configureHierarchy(){
         contentView.addSubview(checkImageView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(contentLabel)
         contentView.addSubview(dateLabel)
         contentView.addSubview(tagLabel)
+        contentView.addSubview(mainImageView)
     }
     override func configureLayout(){
         checkImageView.snp.makeConstraints { make in
@@ -75,6 +83,11 @@ final class ListTableCell: BaseTableCell {
             make.leading.equalTo(checkImageView.snp.trailing).offset(15)
             make.bottom.equalToSuperview().inset(15)
         }
+        mainImageView.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(20)
+            make.verticalEdges.equalToSuperview().inset(15)
+            make.width.height.equalTo(80)
+        }
     }
     override func configureView(){
         
@@ -85,6 +98,7 @@ final class ListTableCell: BaseTableCell {
         contentLabel.text = data.content
         dateLabel.text = GetDate.shared.dateToString(data.registerDate)
         tagLabel.text = (data.memoTag != nil) ? "#\(data.memoTag!)" : ""
+        mainImageView.image = ImageFileManager.shared.loadImageToDocument(filename: "\(data.id)")
         
         switch data.priority{
         case 0:

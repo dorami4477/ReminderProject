@@ -11,13 +11,6 @@ import RealmSwift
 class TodoRepository{
     let realm = try! Realm()
     
-    func fetchAll() -> [Todo]{
-        let todoList = realm.objects(Todo.self).sorted(byKeyPath: "registerDate", ascending: true)
-        print(realm.configuration.fileURL!)
-        return Array(todoList)
-        
-    }
-    
     //Create
     func addTodo(data:Todo) {
         try! realm.write {
@@ -60,6 +53,8 @@ class TodoRepository{
         return Array(list)
     }
     
-    
+    //print(realm.configuration.fileURL!)
+
+
 
 }

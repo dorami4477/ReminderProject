@@ -20,10 +20,13 @@ final class FolderViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-        navigationItem.title = "title"
+
     }
     
     override func configureView() {
+        navigationItem.title = "전체"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         mainView.addButton.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
     }
 
@@ -56,6 +59,7 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
+        vc.delegate = self
         vc.list = repository.setFolderData(indexPath.row)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -66,6 +70,13 @@ extension FolderViewController:AddTodoDelegate{
     
     func addTodo(data:Todo) {
         repository.addTodo(data: data)
+        mainView.collectionView.reloadData()
+    }
+}
+
+extension FolderViewController:ChangeDateDelegate{
+    func updateData(data:Todo, cellName:String, value:Bool) {
+        repository.updateCell(id: data.id, cellName: cellName, cellValue: value)
         mainView.collectionView.reloadData()
     }
     

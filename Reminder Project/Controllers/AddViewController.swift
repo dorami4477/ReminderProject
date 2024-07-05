@@ -16,7 +16,7 @@ class AddViewController: BaseViewController {
     let mainView = AddView()
     weak var delegate:AddTodoDelegate?
     var priorty:Int = 2
-    var deadLine:Int = 0
+    var deadLine:Int = GetDate.shared.todayInt
     let repository = TodoRepository()
     
     override func loadView() {

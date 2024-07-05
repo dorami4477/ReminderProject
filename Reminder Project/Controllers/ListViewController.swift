@@ -8,16 +8,16 @@
 import UIKit
 import SnapKit
 
+protocol ChangeDateDelegate:AnyObject {
+    func updateData(data:Todo, cellName:String, value:Bool)
+}
+
 final class ListViewController: BaseViewController {
 
     private let tableView = UITableView()
     let repository = TodoRepository()
-    var filteredList:[Todo] = []
-    var list:[Todo] = []{
-        didSet{
-            filteredList = list
-        }
-    }
+    var list:[Todo] = []
+    weak var delegate:ChangeDateDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,13 +85,13 @@ final class ListViewController: BaseViewController {
     func arragingData(sort:Int){
         switch sort{
         case 0:
-            filteredList = list
+            list.sort{ $0.registerDate < $1.registerDate }
         case 1:
-            filteredList = list.sorted{ $0.title < $1.title }
+            list.sort{ $0.title < $1.title }
         case 2:
-            filteredList = list.sorted{ $0.priority < $1.priority }
+            list.sort{ $0.priority < $1.priority }
         default:
-            filteredList = list
+            list.sort{ $0.registerDate < $1.registerDate }
         }
     }
 
@@ -99,19 +99,28 @@ final class ListViewController: BaseViewController {
 
 extension ListViewController:UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredList.count
+        return list.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ListTableCell.identifier, for: indexPath) as! ListTableCell
-        cell.data = filteredList[indexPath.row]
+        cell.data = list[indexPath.row]
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    
-        let data = self.filteredList[indexPath.row]
+        
+        let data = self.list[indexPath.row]
+        
+        //스와이프 핀고정
+        let pinned = UIContextualAction(style: .normal, title: "핀고정") { action, view, completionHandler in
+            let pinValue = !data.pinned
+            self.delegate?.updateData(data: data, cellName: "pinned", value:pinValue)
+            completionHandler(true)
+        }
+        pinned.backgroundColor = AppColor.yellow
+        pinned.image = data.pinned ? UIImage(systemName:Icon.pinned) : UIImage(systemName:Icon.unpinned)
         
         //스와이프 삭제
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
@@ -120,28 +129,20 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
                 tableView.reloadData()
             }
         }
-        //스와이프 핀고정
-        let pinned = UIContextualAction(style: .normal, title: "핀고정") { action, view, completionHandler in
-            let pinned = !data.pinned
-            self.repository.updateCell(id: data.id, cellName: "pinned", cellValue: pinned)
-            completionHandler(true)
-        }
-        
         delete.backgroundColor = AppColor.red
-        pinned.backgroundColor = AppColor.yellow
         delete.image = UIImage(systemName:Icon.delete)
-        pinned.image = data.pinned ? UIImage(systemName:Icon.pinned) : UIImage(systemName:Icon.unpinned)
         return UISwipeActionsConfiguration(actions: [delete, pinned])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //완료 체크
-        let data = filteredList[indexPath.row]
+        let data = list[indexPath.row]
         let complete = !data.completed
         let cell = tableView.cellForRow(at: indexPath) as! ListTableCell
         cell.checkButtonTapped(complete)
-        repository.updateCell(id: data.id, cellName: "completed", cellValue: complete)
+        self.delegate?.updateData(data: data, cellName: "completed", value:complete)
     }
+    
 
 }
 

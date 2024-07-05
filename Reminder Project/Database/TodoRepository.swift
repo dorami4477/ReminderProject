@@ -27,16 +27,16 @@ class TodoRepository{
     
     //Delete
     func deleteTodo(dataID: ObjectId) {
-        let data = self.realm.object(ofType: Todo.self, forPrimaryKey: dataID)!
-        try! self.realm.write {
-            self.realm.delete(data)
+        let data = realm.object(ofType: Todo.self, forPrimaryKey: dataID)!
+        try! realm.write {
+            realm.delete(data)
         }
     }
     
     //Update
     func updateCell(id: ObjectId, cellName:String, cellValue:Bool){
-        try! self.realm.write {
-            self.realm.create(Todo.self, value: ["id":id, cellName: cellValue], update: .modified)
+        try! realm.write {
+            realm.create(Todo.self, value: ["id":id, cellName: cellValue], update: .modified)
         }
     }
     

@@ -9,7 +9,7 @@ import UIKit
 
 class DeadlineViewController: BaseViewController {
 
-    var selectedDate:Int = 0
+    var selectedDate:Int = GetDate.shared.todayInt
     
     private let mainView = DeadlineView()
     
@@ -25,6 +25,7 @@ class DeadlineViewController: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        //print(deadLine)
         deadLine?(selectedDate)
     }
 

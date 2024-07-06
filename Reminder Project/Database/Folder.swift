@@ -14,7 +14,7 @@ struct Folder{
     var color:UIColor
 }
 
-class FolderData{
+final class FolderData{
     static let shared = FolderData()
     private init(){}
     

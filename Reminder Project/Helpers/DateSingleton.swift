@@ -8,7 +8,7 @@
 import Foundation
 
 
-class GetDate{
+final class GetDate{
     
     static let shared = GetDate()
     private init(){}
@@ -39,5 +39,11 @@ class GetDate{
             myFormatter.dateFormat = "yyyy. MM. dd"
             let savedDateString = myFormatter.string(from: Date())
             return savedDateString
+    }
+    
+    func dateToInt(date: Date) -> Int {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        return Int(formatter.string(from: date)) ?? 0
     }
 }

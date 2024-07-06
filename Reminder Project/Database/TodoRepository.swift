@@ -8,8 +8,8 @@
 import Foundation
 import RealmSwift
 
-class TodoRepository{
-    let realm = try! Realm()
+final class TodoRepository{
+    private let realm = try! Realm()
     
     //Create
     func addTodo(data:Todo) {
@@ -56,7 +56,5 @@ class TodoRepository{
     }
     
     //print(realm.configuration.fileURL!)
-
-
 
 }

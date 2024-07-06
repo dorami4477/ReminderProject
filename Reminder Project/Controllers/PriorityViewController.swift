@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PriorityViewController: BaseViewController {
+final class PriorityViewController: BaseViewController {
 
     private let mainView = PriorityView()
     

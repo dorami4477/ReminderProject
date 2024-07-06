@@ -153,8 +153,8 @@
 				4831505B2C35382200175847 /* TagViewController.swift */,
 				4831505D2C35383000175847 /* PriorityViewController.swift */,
 				483150532C352C2400175847 /* DeadlineViewController.swift */,
-				483150632C354B2300175847 /* FolderViewController.swift */,
 				48ED4A5E2C38355600DBA7F5 /* CalendarViewController.swift */,
+				483150632C354B2300175847 /* FolderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

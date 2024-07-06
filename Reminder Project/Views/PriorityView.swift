@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PriorityView: BaseView {
+final class PriorityView: BaseView {
 
     let backButton = {
         let button = UIButton()

@@ -7,12 +7,10 @@
 
 import UIKit
 
-class DeadlineViewController: BaseViewController {
+final class DeadlineViewController: BaseViewController {
 
-    var selectedDate:Int = GetDate.shared.todayInt
-    
+    private var selectedDate:Int = GetDate.shared.todayInt
     private let mainView = DeadlineView()
-    
     var deadLine:((Int) -> Void)?
     
     override func loadView() {
@@ -21,27 +19,23 @@ class DeadlineViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainView.picker.addTarget(self, action: #selector(setDate), for: .valueChanged)
-        mainView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         deadLine?(selectedDate)
     }
+    
+    override func configureView() {
+        mainView.picker.addTarget(self, action: #selector(setDate), for: .valueChanged)
+        mainView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
 
-    @objc func setDate(_ sender: UIDatePicker){
-        selectedDate = dateFormat(date: sender.date)
+    @objc private func setDate(_ sender: UIDatePicker){
+        selectedDate = GetDate.shared.dateToInt(date: sender.date)
     }
     
-    @objc func backButtonTapped(){
+    @objc private func backButtonTapped(){
         dismiss(animated: true)
     }
-
-    private func dateFormat(date: Date) -> Int {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        return Int(formatter.string(from: date))!
-    }
-
 }
 

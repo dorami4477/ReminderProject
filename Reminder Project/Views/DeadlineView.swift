@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DeadlineView: BaseView {
+final class DeadlineView: BaseView {
 
     let backButton = {
         let button = UIButton()

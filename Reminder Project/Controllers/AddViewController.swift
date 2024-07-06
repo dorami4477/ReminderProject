@@ -12,7 +12,7 @@ protocol AddTodoDelegate:AnyObject {
     func addTodo(data:Todo)
 }
 
-class AddViewController: BaseViewController {
+final class AddViewController: BaseViewController {
 
     let mainView = AddView()
     weak var delegate:AddTodoDelegate?
@@ -138,7 +138,6 @@ extension AddViewController:PHPickerViewControllerDelegate{
 extension AddViewController: UITextViewDelegate {
    
    func textViewDidBeginEditing(_ textView: UITextView) {
-       print("작동하는 것이냐")
        if textView.textColor == UIColor.lightGray {
            textView.text = nil
            textView.textColor = UIColor.white

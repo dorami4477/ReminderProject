@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TagView: BaseView {
+final class TagView: BaseView {
 
     let backButton = {
         let button = UIButton()

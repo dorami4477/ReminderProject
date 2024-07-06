@@ -42,6 +42,14 @@ final class AddView: BaseView {
         image.clipsToBounds = true
         return image
     }()
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let border = CALayer()
+        border.frame = CGRect(x: 5, y: titleTextField.frame.size.height - 1, width: titleTextField.frame.width - 10, height: 1)
+        border.backgroundColor = UIColor.darkGray.cgColor
+        titleTextField.layer.addSublayer(border)
+    }
 
     
     override func configureHierarchy() {

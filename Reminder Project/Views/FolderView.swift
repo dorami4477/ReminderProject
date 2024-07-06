@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FolderView: BaseView {
+final class FolderView: BaseView {
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout())
     let addButton = {

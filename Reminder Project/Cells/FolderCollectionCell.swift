@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FolderCollectionCell: UICollectionViewCell {
+final class FolderCollectionCell: UICollectionViewCell {
     var data:Folder = Folder(icon: "", title: "", count: 0, color: .black){
         didSet{
             configureData()

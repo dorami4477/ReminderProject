@@ -18,7 +18,6 @@ class BaseView: UIView {
         configureView()
     }
     
-
     func configureHierarchy(){}
     func configureLayout(){}
     func configureView(){}

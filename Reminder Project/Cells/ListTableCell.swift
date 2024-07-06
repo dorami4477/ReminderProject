@@ -85,8 +85,8 @@ final class ListTableCell: BaseTableCell {
         }
         mainImageView.snp.makeConstraints { make in
             make.trailing.equalToSuperview().inset(20)
-            make.verticalEdges.equalToSuperview().inset(15)
             make.width.height.equalTo(80)
+            make.centerY.equalToSuperview()
         }
     }
     override func configureView(){

@@ -18,12 +18,14 @@ class PriorityViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        mainView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     override func viewWillDisappear(_ animated: Bool) {
         priorityValue?(mainView.segment.selectedSegmentIndex)
     }
 
-
+    @objc func backButtonTapped(){
+        dismiss(animated: true)
+    }
 
 }

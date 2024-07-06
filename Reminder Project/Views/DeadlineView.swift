@@ -11,9 +11,9 @@ class DeadlineView: BaseView {
 
     let backButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
+        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
+        button.contentVerticalAlignment = .center
+        button.contentHorizontalAlignment = .center
         return button
     }()
     let picker = {
@@ -32,7 +32,7 @@ class DeadlineView: BaseView {
     override func configureLayout() {
         backButton.snp.makeConstraints { make in
             make.top.equalTo(safeAreaLayoutGuide).inset(25)
-            make.leading.equalToSuperview().offset(20)
+            make.horizontalEdges.equalTo(safeAreaLayoutGuide)
         }
         picker.snp.makeConstraints { make in
             make.top.equalTo(backButton.snp.bottom).offset(30)

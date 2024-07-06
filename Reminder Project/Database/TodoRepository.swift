@@ -34,7 +34,7 @@ class TodoRepository{
     }
     
     //Read
-    func setFolderData(_ folder:Int) -> [Todo]{
+    func setFolderData(_ folder:Int, date:Int?) -> [Todo]{
         var list:Results<Todo>!
         switch folder{
         case 0:
@@ -47,6 +47,8 @@ class TodoRepository{
             list = realm.objects(Todo.self).where { $0.pinned == true }.sorted(byKeyPath: "registerDate", ascending: true)
         case 4:
             list = realm.objects(Todo.self).where { $0.completed == true }.sorted(byKeyPath: "registerDate", ascending: true)
+        case 5:
+            list = realm.objects(Todo.self).where { $0.registerDate == date ?? 0}.sorted(byKeyPath: "completed", ascending: true)
         default:
             list = realm.objects(Todo.self)
         }

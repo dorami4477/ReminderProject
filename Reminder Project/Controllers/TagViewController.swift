@@ -18,13 +18,15 @@ class TagViewController: BaseViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainView.backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         tagValue?(mainView.textField.text ?? "")
     }
     
-
-
+    @objc func backButtonTapped(){
+        dismiss(animated: true)
+    }
 
 }

@@ -59,7 +59,7 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FolderCollectionCell.identifier, for: indexPath) as! FolderCollectionCell
-        folderList[indexPath.row].count = repository.setFolderData(indexPath.row).count
+        folderList[indexPath.row].count = repository.setFolderData(indexPath.row, date: nil).count
         cell.data = folderList[indexPath.row]
         return cell
     }
@@ -67,7 +67,7 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
         vc.delegate = self
-        vc.list = repository.setFolderData(indexPath.row)
+        vc.list = repository.setFolderData(indexPath.row, date: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

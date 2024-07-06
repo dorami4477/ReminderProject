@@ -26,6 +26,14 @@ final class ListViewController: BaseViewController {
         configureTableView()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if list.count == 0{
+            showAlert(title: "할일 목록이 없습니다!", message: "할일을 등록 후 조회해주세요:)", buttonTitle: "확인") {
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
     override func configureHierarchy() {
         view.addSubview(tableView)
     }

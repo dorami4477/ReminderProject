@@ -11,14 +11,23 @@ final class AddView: BaseView {
 
     let titleTextField = {
         let textField = UITextField()
-        textField.placeholder = "제목"
+        textField.attributedPlaceholder = NSAttributedString(string: "제목을 입력하세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
         textField.backgroundColor = AppColor.ground
+        textField.layer.cornerRadius = 10
+        textField.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMinYCorner, .layerMaxXMinYCorner)
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.leftView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 5.0, height: 0.0))
+        textField.leftViewMode = .always
         return textField
     }()
     let contentTextView = {
         let textView = UITextView()
-        textView.text = "메모"
+        textView.text = "메모를 입력하세요"
+        textView.textColor = .lightGray
+        textView.font = UIFont.systemFont(ofSize: 14)
         textView.backgroundColor = AppColor.ground
+        textView.layer.cornerRadius = 10
+        textView.layer.maskedCorners = CACornerMask(arrayLiteral: .layerMinXMaxYCorner, .layerMaxXMaxYCorner)
         return textView
     }()
     
@@ -53,7 +62,7 @@ final class AddView: BaseView {
         contentTextView.snp.makeConstraints { make in
             make.top.equalTo(titleTextField.snp.bottom)
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(15)
-            make.height.equalTo(88)
+            make.height.equalTo(120)
         }
         deadlineButtonView.snp.makeConstraints { make in
             make.top.equalTo(contentTextView.snp.bottom).offset(15)

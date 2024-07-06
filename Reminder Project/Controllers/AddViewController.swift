@@ -29,11 +29,11 @@ class AddViewController: BaseViewController {
         super.viewDidLoad()
         configureNavigationItem()
         setGesture()
+        mainView.contentTextView.delegate = self
     }
 
     private func configureNavigationItem(){
         let add = UIBarButtonItem(title:"추가", style: .plain, target: self, action: #selector(saveButtonTapped))
-        
         let cancel = UIBarButtonItem(title:"취소", style: .plain, target: self, action: #selector(cancelButtonTapped))
         navigationItem.title = "새로운 할일"
         navigationItem.leftBarButtonItem = cancel
@@ -133,4 +133,24 @@ extension AddViewController:PHPickerViewControllerDelegate{
             }
         }
     }
+}
+
+extension AddViewController: UITextViewDelegate {
+   
+   func textViewDidBeginEditing(_ textView: UITextView) {
+       print("작동하는 것이냐")
+       if textView.textColor == UIColor.lightGray {
+           textView.text = nil
+           textView.textColor = UIColor.white
+       }
+       
+   }
+
+   func textViewDidEndEditing(_ textView: UITextView) {
+       if textView.text.isEmpty {
+           textView.text = "메모를 입력하세요"
+           textView.textColor = UIColor.lightGray
+       }
+   }
+   
 }

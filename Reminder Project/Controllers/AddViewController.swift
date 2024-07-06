@@ -70,9 +70,10 @@ final class AddViewController: BaseViewController {
         mainView.priorityButtonView.addGestureRecognizer(tapGesture3)
         mainView.imageButtonView.addGestureRecognizer(tapGesture4)
     }
-    
+    //마감일뷰컨으로 이동
     @objc func deadlineButtonTapped(){
         let vc = DeadlineViewController()
+        vc.selectedDate = deadLine
         vc.deadLine = { value in
             self.deadLine = value
             let stringValue = GetDate.shared.dateToString(value)
@@ -81,16 +82,29 @@ final class AddViewController: BaseViewController {
         present(vc, animated: true)
     }
     
+    //태그뷰컨으로 이동
     @objc func tagButtonTapped(){
         let vc = TagViewController()
+        vc.mainView.textField.text = self.mainView.tagButtonView.contentLabel.text
         vc.tagValue = { value in
             self.mainView.tagButtonView.contentLabel.text = value
         }
         present(vc, animated: true)
     }
     
+    //우선순위뷰컨으로 이동
     @objc func priorityButtonTapped(){
         let vc = PriorityViewController()
+        switch mainView.priorityButtonView.contentLabel.text{
+        case "High":
+            vc.mainView.segment.selectedSegmentIndex = 0
+        case "Middle":
+            vc.mainView.segment.selectedSegmentIndex = 1
+        case "Low":
+            vc.mainView.segment.selectedSegmentIndex = 2
+        default:
+            print("error")
+        }
         vc.priorityValue = { value in
             switch value{
             case 0:
@@ -110,10 +124,11 @@ final class AddViewController: BaseViewController {
         present(vc, animated: true)
     }
     
+    //이미지피커뷰컨 이동
     @objc func imageButtonTapped(){
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 3
-        configuration.filter = .any(of: [.screenshots, .images])
+        configuration.selectionLimit = 1
+        configuration.filter = .any(of: [.screenshots, .images, .livePhotos])
 
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self

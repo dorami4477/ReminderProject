@@ -49,6 +49,7 @@ final class ListTableCell: BaseTableCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
+        image.tintColor = AppColor.gray
         return image
     }()
     

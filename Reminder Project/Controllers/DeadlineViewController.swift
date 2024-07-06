@@ -9,8 +9,8 @@ import UIKit
 
 final class DeadlineViewController: BaseViewController {
 
-    private var selectedDate:Int = GetDate.shared.todayInt
-    private let mainView = DeadlineView()
+    var selectedDate:Int = 0
+     let mainView = DeadlineView()
     var deadLine:((Int) -> Void)?
     
     override func loadView() {
@@ -19,6 +19,8 @@ final class DeadlineViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let date = GetDate.shared.toDate(date: "\(selectedDate)") ?? Date()
+        mainView.picker.setDate(date, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,5 +39,7 @@ final class DeadlineViewController: BaseViewController {
     @objc private func backButtonTapped(){
         dismiss(animated: true)
     }
+    
+    
 }
 

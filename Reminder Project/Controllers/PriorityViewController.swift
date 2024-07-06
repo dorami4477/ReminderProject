@@ -9,7 +9,7 @@ import UIKit
 
 final class PriorityViewController: BaseViewController {
 
-    private let mainView = PriorityView()
+    let mainView = PriorityView()
     
     var priorityValue:((Int) -> Void)?
     
@@ -24,7 +24,7 @@ final class PriorityViewController: BaseViewController {
         priorityValue?(mainView.segment.selectedSegmentIndex)
     }
 
-    @objc func backButtonTapped(){
+    @objc private func backButtonTapped(){
         dismiss(animated: true)
     }
 

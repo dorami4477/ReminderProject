@@ -46,4 +46,14 @@ final class GetDate{
         formatter.dateFormat = "yyyyMMdd"
         return Int(formatter.string(from: date)) ?? 0
     }
+    
+    func toDate(date:String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        if let date = dateFormatter.date(from: date) {
+            return date
+        } else {
+            return nil
+        }
+    }
 }

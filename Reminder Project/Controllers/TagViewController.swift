@@ -9,7 +9,7 @@ import UIKit
 
 final class TagViewController: BaseViewController {
 
-    private let mainView = TagView()
+    let mainView = TagView()
     
     var tagValue:((String) -> Void)?
     

@@ -20,7 +20,6 @@ final class FolderViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
-
     }
     
     override func configureView() {
@@ -52,6 +51,7 @@ final class FolderViewController: BaseViewController {
     
 }
 
+// MARK: - collectionView
 extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return folderList.count
@@ -67,6 +67,7 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = ListViewController()
         vc.delegate = self
+        vc.folderInfo["folderNumber"] = indexPath.row
         vc.list = repository.setFolderData(indexPath.row, date: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -74,7 +75,6 @@ extension FolderViewController:UICollectionViewDelegate, UICollectionViewDataSou
 
 
 extension FolderViewController:AddTodoDelegate{
-    
     func addTodo(data:Todo) {
         repository.addTodo(data: data)
         mainView.collectionView.reloadData()
@@ -85,6 +85,10 @@ extension FolderViewController:ChangeDateDelegate{
     func updateData(data:Todo, cellName:String, value:Bool) {
         repository.updateCell(id: data.id, cellName: cellName, cellValue: value)
         mainView.collectionView.reloadData()
-    }
+    }    
     
+    func deleteData(data:Todo){
+        repository.deleteTodo(dataID: data.id)
+        mainView.collectionView.reloadData()
+    }
 }

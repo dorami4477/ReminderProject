@@ -10,6 +10,7 @@ import SnapKit
 
 protocol ChangeDateDelegate:AnyObject {
     func updateData(data:Todo, cellName:String, value:Bool)
+    func deleteData(data:Todo)
 }
 
 final class ListViewController: BaseViewController {
@@ -18,7 +19,7 @@ final class ListViewController: BaseViewController {
     let repository = TodoRepository()
     var list:[Todo] = []
     weak var delegate:ChangeDateDelegate?
-
+    var folderInfo:[String:Int] = [:]
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -60,11 +61,11 @@ final class ListViewController: BaseViewController {
         
     }
     
-    @objc func backButtonTapped(){
+    @objc private func backButtonTapped(){
         navigationController?.popViewController(animated: true)
     }
     
-    @objc func moreButtonTapped(){
+    @objc private func moreButtonTapped(){
         let alert = UIAlertController(title: "Sorted by", message: nil, preferredStyle: .actionSheet)
             
         let button1 = UIAlertAction(title: "마감일 순", style: .default){ _ in
@@ -134,7 +135,8 @@ extension ListViewController:UITableViewDelegate, UITableViewDataSource{
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             self.showAlert(title: "삭제", message: "정말로 삭제 하시겠습니까?", buttonTitle: "삭제") {
                 ImageFileManager.shared.removeImageFromDocument(filename: "\(data.id)")
-                self.repository.deleteTodo(dataID: data.id)
+                self.delegate?.deleteData(data: data)
+                self.list = self.repository.setFolderData(self.folderInfo["folderNumber"] ?? 2, date: self.folderInfo["date"])
                 tableView.reloadData()
             }
         }

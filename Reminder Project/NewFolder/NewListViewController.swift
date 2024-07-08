@@ -26,7 +26,6 @@ final class NewListViewController: BaseViewController {
         configureHierarchy()
         configureLayout()
         configureTableView()
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,12 +45,21 @@ final class NewListViewController: BaseViewController {
         }
     }
     override func configureView() {
-        title = "전체"
+        navigationController?.navigationBar.prefersLargeTitles = false
+        if folder.title == "전체"{
+            let searchCon = UISearchController(searchResultsController: nil)
+            searchCon.searchBar.placeholder = "할 일을 검색하세요."
+            self.navigationItem.searchController = searchCon
+            self.navigationController?.navigationBar.shadowImage = nil
+            searchCon.searchBar.autocapitalizationType = .none
+            searchCon.searchBar.autocorrectionType = .no
+            searchCon.searchBar.delegate = self
+            navigationItem.hidesSearchBarWhenScrolling = false
+        }
+        title = folder.title
         let back = UIBarButtonItem(image:UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(backButtonTapped))
         navigationItem.leftBarButtonItem = back
-        let more = UIBarButtonItem(image:UIImage(systemName: "ellipsis.circle"), style: .plain, target: self, action: #selector(moreButtonTapped))
-        navigationItem.rightBarButtonItem = more
-    
+
     }
     
     private func configureTableView(){
@@ -66,44 +74,6 @@ final class NewListViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc private func moreButtonTapped(){
-        let alert = UIAlertController(title: "Sorted by", message: nil, preferredStyle: .actionSheet)
-            
-        let button1 = UIAlertAction(title: "마감일 순", style: .default){ _ in
-            self.arragingData(sort: 0)
-            self.tableView.reloadData()
-        }
-        let button2 = UIAlertAction(title: "제목 순", style: .default){ _ in
-            self.arragingData(sort: 1)
-            self.tableView.reloadData()
-        }
-        let button3 = UIAlertAction(title: "우선순위 순", style: .default){ _ in
-            self.arragingData(sort: 2)
-            self.tableView.reloadData()
-        }
-            let cancel = UIAlertAction(title: "취소", style: .cancel)
-            
-            alert.addAction(button1)
-            alert.addAction(button2)
-            alert.addAction(button3)
-            alert.addAction(cancel)
-            
-            present(alert, animated: true)
-    }
-
-
-    func arragingData(sort:Int){
-        switch sort{
-        case 0:
-            list.sort{ $0.registerDate < $1.registerDate }
-        case 1:
-            list.sort{ $0.title < $1.title }
-        case 2:
-            list.sort{ $0.priority < $1.priority }
-        default:
-            list.sort{ $0.registerDate < $1.registerDate }
-        }
-    }
 
 }
 
@@ -150,3 +120,15 @@ extension NewListViewController:UITableViewDelegate, UITableViewDataSource{
 
 }
 
+extension NewListViewController:UISearchBarDelegate{
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        list = list.filter{$0.title.lowercased().contains(searchText.lowercased())}
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        let list = self.repository.findFolderWithTitle(self.folder.title).todoList
+        self.list = Array(list)
+        tableView.reloadData()
+    }
+}

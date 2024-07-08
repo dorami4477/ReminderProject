@@ -35,6 +35,10 @@
 		488C00752C343D1B005F900F /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00742C343D1B005F900F /* AddViewController.swift */; };
 		488C00782C343D9B005F900F /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00772C343D9B005F900F /* BaseView.swift */; };
 		488C007A2C343DBB005F900F /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488C00792C343DBB005F900F /* AddView.swift */; };
+		48EC81012C3BCA4D00A1F68F /* NewTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81002C3BCA4D00A1F68F /* NewTodo.swift */; };
+		48EC81042C3BCEA500A1F68F /* NewFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81032C3BCEA500A1F68F /* NewFolderViewController.swift */; };
+		48EC81062C3BCFA100A1F68F /* NewFolderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81052C3BCFA100A1F68F /* NewFolderCollectionCell.swift */; };
+		48EC81092C3BD36900A1F68F /* NewAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81082C3BD36900A1F68F /* NewAddViewController.swift */; };
 		48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */; };
 		48ED4A5B2C377B0C00DBA7F5 /* DateSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */; };
 		48ED4A5D2C37CF2900DBA7F5 /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */; };
@@ -88,6 +92,10 @@
 		488C00742C343D1B005F900F /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		488C00772C343D9B005F900F /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		488C00792C343DBB005F900F /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		48EC81002C3BCA4D00A1F68F /* NewTodo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTodo.swift; sourceTree = "<group>"; };
+		48EC81032C3BCEA500A1F68F /* NewFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderViewController.swift; sourceTree = "<group>"; };
+		48EC81052C3BCFA100A1F68F /* NewFolderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderCollectionCell.swift; sourceTree = "<group>"; };
+		48EC81082C3BD36900A1F68F /* NewAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddViewController.swift; sourceTree = "<group>"; };
 		48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSingleton.swift; sourceTree = "<group>"; };
 		48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
@@ -130,6 +138,7 @@
 		488C00492C34306B005F900F /* Reminder Project */ = {
 			isa = PBXGroup;
 			children = (
+				48EC81072C3BD33D00A1F68F /* NewFolder */,
 				488C00762C343D87005F900F /* Views */,
 				488C006B2C343351005F900F /* Helpers */,
 				488C006A2C343344005F900F /* Cells */,
@@ -203,6 +212,17 @@
 				483150692C35594500175847 /* FolderView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		48EC81072C3BD33D00A1F68F /* NewFolder */ = {
+			isa = PBXGroup;
+			children = (
+				48EC81052C3BCFA100A1F68F /* NewFolderCollectionCell.swift */,
+				48EC81002C3BCA4D00A1F68F /* NewTodo.swift */,
+				48EC81032C3BCEA500A1F68F /* NewFolderViewController.swift */,
+				48EC81082C3BD36900A1F68F /* NewAddViewController.swift */,
+			);
+			path = NewFolder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -293,8 +313,11 @@
 				4831505E2C35383000175847 /* PriorityViewController.swift in Sources */,
 				488C004F2C34306B005F900F /* ListViewController.swift in Sources */,
 				483150602C353CEC00175847 /* PriorityView.swift in Sources */,
+				48EC81012C3BCA4D00A1F68F /* NewTodo.swift in Sources */,
 				488C006F2C343380005F900F /* BaseTableCell.swift in Sources */,
 				488C00752C343D1B005F900F /* AddViewController.swift in Sources */,
+				48EC81092C3BD36900A1F68F /* NewAddViewController.swift in Sources */,
+				48EC81042C3BCEA500A1F68F /* NewFolderViewController.swift in Sources */,
 				488C004B2C34306B005F900F /* AppDelegate.swift in Sources */,
 				483150542C352C2400175847 /* DeadlineViewController.swift in Sources */,
 				488C004D2C34306B005F900F /* SceneDelegate.swift in Sources */,
@@ -314,6 +337,7 @@
 				483150642C354B2300175847 /* FolderViewController.swift in Sources */,
 				48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */,
 				4831505C2C35382200175847 /* TagViewController.swift in Sources */,
+				48EC81062C3BCFA100A1F68F /* NewFolderCollectionCell.swift in Sources */,
 				48ED4A5F2C38355600DBA7F5 /* CalendarViewController.swift in Sources */,
 				488C006D2C343369005F900F /* ReuseIdentifier.swift in Sources */,
 				488C00692C34332D005F900F /* Todo.swift in Sources */,

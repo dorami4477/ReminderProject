@@ -13,6 +13,7 @@ final class TodoRepository{
     
     //Create
     func addTodo(data:Todo) {
+        
         try! realm.write {
             realm.add(data)
         }
@@ -56,5 +57,49 @@ final class TodoRepository{
     }
     
     //print(realm.configuration.fileURL!)
+    
+    
+    //---------------NewTodo --------
+    
+    func fetchFolder() -> [NewFolder]{
+        let value = realm.objects(NewFolder.self)
+        return Array(value)
+    }
+    
+    //초기 폴더 리스트 세팅
+    func setInitialFolderList(){
+        print(realm.configuration.fileURL!)
+        let list = [
+            NewFolder(icon: "calendar", title: "오늘"),
+            NewFolder(icon: "calendar.badge.clock", title: "예정"),
+            NewFolder(icon: "tray.full.fill", title: "전체"),
+            NewFolder(icon: "flag.fill", title: "깃발 표시"),
+            NewFolder(icon: "checkmark", title: "완료됨")
+        ]
+        do {
+            try realm.write {
+                realm.add(list)
+            }
+        } catch {
+            print("faild to set the folder List")
+        }
+    } 
+    
+    func addNewTodo(data:NewTodo, folder:NewFolder) {
+        try! realm.write {
+            folder.todoList.append(data)
+        }
+    }
+    
+    
+    func findFolder(date:Int) -> NewFolder{
+        if date == GetDate.shared.todayInt{
+            return realm.objects(NewFolder.self).where{ $0.title == "오늘"}.first ?? NewFolder()
+        }else if date > GetDate.shared.todayInt{
+            return realm.objects(NewFolder.self).where{ $0.title == "예정"}.first ?? NewFolder()
+        }else{
+            return realm.objects(NewFolder.self).where{ $0.title == "전체"}.first ?? NewFolder()
+        }
+    }
 
 }

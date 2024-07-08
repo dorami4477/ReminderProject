@@ -39,6 +39,8 @@
 		48EC81042C3BCEA500A1F68F /* NewFolderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81032C3BCEA500A1F68F /* NewFolderViewController.swift */; };
 		48EC81062C3BCFA100A1F68F /* NewFolderCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81052C3BCFA100A1F68F /* NewFolderCollectionCell.swift */; };
 		48EC81092C3BD36900A1F68F /* NewAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81082C3BD36900A1F68F /* NewAddViewController.swift */; };
+		48EC810B2C3BD9D100A1F68F /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC810A2C3BD9D100A1F68F /* NewListViewController.swift */; };
+		48EC810D2C3BDB6C00A1F68F /* NewListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC810C2C3BDB6C00A1F68F /* NewListTableCell.swift */; };
 		48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */; };
 		48ED4A5B2C377B0C00DBA7F5 /* DateSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */; };
 		48ED4A5D2C37CF2900DBA7F5 /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */; };
@@ -96,6 +98,8 @@
 		48EC81032C3BCEA500A1F68F /* NewFolderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderViewController.swift; sourceTree = "<group>"; };
 		48EC81052C3BCFA100A1F68F /* NewFolderCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFolderCollectionCell.swift; sourceTree = "<group>"; };
 		48EC81082C3BD36900A1F68F /* NewAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddViewController.swift; sourceTree = "<group>"; };
+		48EC810A2C3BD9D100A1F68F /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
+		48EC810C2C3BDB6C00A1F68F /* NewListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListTableCell.swift; sourceTree = "<group>"; };
 		48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSingleton.swift; sourceTree = "<group>"; };
 		48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				48EC81002C3BCA4D00A1F68F /* NewTodo.swift */,
 				48EC81032C3BCEA500A1F68F /* NewFolderViewController.swift */,
 				48EC81082C3BD36900A1F68F /* NewAddViewController.swift */,
+				48EC810A2C3BD9D100A1F68F /* NewListViewController.swift */,
+				48EC810C2C3BDB6C00A1F68F /* NewListTableCell.swift */,
 			);
 			path = NewFolder;
 			sourceTree = "<group>";
@@ -309,6 +315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48EC810B2C3BD9D100A1F68F /* NewListViewController.swift in Sources */,
 				483150622C353D3100175847 /* TagView.swift in Sources */,
 				4831505E2C35383000175847 /* PriorityViewController.swift in Sources */,
 				488C004F2C34306B005F900F /* ListViewController.swift in Sources */,
@@ -323,6 +330,7 @@
 				488C004D2C34306B005F900F /* SceneDelegate.swift in Sources */,
 				4831505A2C35377900175847 /* Contant.swift in Sources */,
 				483150582C35340500175847 /* TodoButtonView.swift in Sources */,
+				48EC810D2C3BDB6C00A1F68F /* NewListTableCell.swift in Sources */,
 				48ED4A5B2C377B0C00DBA7F5 /* DateSingleton.swift in Sources */,
 				488C00712C343397005F900F /* ListTableCell.swift in Sources */,
 				48ED4A5D2C37CF2900DBA7F5 /* TodoRepository.swift in Sources */,

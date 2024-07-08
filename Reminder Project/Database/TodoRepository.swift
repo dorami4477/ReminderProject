@@ -72,9 +72,7 @@ final class TodoRepository{
         let list = [
             NewFolder(icon: "calendar", title: "오늘"),
             NewFolder(icon: "calendar.badge.clock", title: "예정"),
-            NewFolder(icon: "tray.full.fill", title: "전체"),
-            NewFolder(icon: "flag.fill", title: "깃발 표시"),
-            NewFolder(icon: "checkmark", title: "완료됨")
+            NewFolder(icon: "tray.full.fill", title: "전체")
         ]
         do {
             try realm.write {
@@ -88,6 +86,8 @@ final class TodoRepository{
     func addNewTodo(data:NewTodo, folder:NewFolder) {
         try! realm.write {
             folder.todoList.append(data)
+            let allFolder = realm.objects(NewFolder.self).where{ $0.title == "전체"}.first
+            allFolder?.todoList.append(data)
         }
     }
     

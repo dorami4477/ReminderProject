@@ -20,6 +20,9 @@ class NewFolderViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
+        if folderList.count == 0{
+            repository.setInitialFolderList()
+        }
     }
     
     override func configureView() {
@@ -65,10 +68,11 @@ extension NewFolderViewController:UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = ListViewController()
+        let vc = NewListViewController()
         vc.delegate = self
         vc.folderInfo["folderNumber"] = indexPath.row
-        vc.list = repository.setFolderData(indexPath.row, date: nil)
+        //vc.list = repository.setFolderData(indexPath.row, date: nil)
+        vc.list = Array(folderList[indexPath.row].todoList)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -81,7 +85,7 @@ extension NewFolderViewController:NewAddTodoDelegate{
     }
 }
 
-extension NewFolderViewController:ChangeDateDelegate{
+extension NewFolderViewController:NewChangeDateDelegate{
     func updateData(data:Todo, cellName:String, value:Bool) {
         repository.updateCell(id: data.id, cellName: cellName, cellValue: value)
         mainView.collectionView.reloadData()

@@ -101,5 +101,17 @@ final class TodoRepository{
             return realm.objects(NewFolder.self).where{ $0.title == "전체"}.first ?? NewFolder()
         }
     }
+    
+    func findFolderWithTitle(_ title:String) -> NewFolder{
+            return realm.objects(NewFolder.self).where{ $0.title == title}.first ?? NewFolder()
+ 
+    }
 
+    //Delete
+    func deleteNewTodo(dataID: ObjectId) {
+        let data = realm.object(ofType: NewTodo.self, forPrimaryKey: dataID)!
+        try! realm.write {
+            realm.delete(data)
+        }
+    }
 }

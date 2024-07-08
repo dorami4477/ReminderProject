@@ -70,9 +70,7 @@ extension NewFolderViewController:UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = NewListViewController()
         vc.delegate = self
-        vc.folderInfo["folderNumber"] = indexPath.row
-        //vc.list = repository.setFolderData(indexPath.row, date: nil)
-        vc.list = Array(folderList[indexPath.row].todoList)
+        vc.folder = folderList[indexPath.row]
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -91,8 +89,8 @@ extension NewFolderViewController:NewChangeDateDelegate{
         mainView.collectionView.reloadData()
     }
     
-    func deleteData(data:Todo){
-        repository.deleteTodo(dataID: data.id)
+    func deleteData(data:NewTodo){
+        repository.deleteNewTodo(dataID: data.id)
         mainView.collectionView.reloadData()
     }
 }

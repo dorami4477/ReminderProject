@@ -10,16 +10,17 @@ import SnapKit
 
 protocol NewChangeDateDelegate:AnyObject {
     func updateData(data:Todo, cellName:String, value:Bool)
-    func deleteData(data:Todo)
+    func deleteData(data:NewTodo)
 }
 
 final class NewListViewController: BaseViewController {
 
     private let tableView = UITableView()
     let repository = TodoRepository()
-    var list:[NewTodo] = []
+    lazy var list:[NewTodo] = Array(folder.todoList)
     weak var delegate:NewChangeDateDelegate?
-    var folderInfo:[String:Int] = [:]
+    var folder:NewFolder = NewFolder(icon: "", title: "")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureHierarchy()
@@ -122,27 +123,19 @@ extension NewListViewController:UITableViewDelegate, UITableViewDataSource{
         
         let data = self.list[indexPath.row]
         
-        //스와이프 핀고정
-        let pinned = UIContextualAction(style: .normal, title: "핀고정") { action, view, completionHandler in
-            let pinValue = !data.pinned
-          //  self.delegate?.updateData(data: data, cellName: "pinned", value:pinValue)
-            completionHandler(true)
-        }
-        pinned.backgroundColor = AppColor.yellow
-        pinned.image = data.pinned ? UIImage(systemName:Icon.pinned) : UIImage(systemName:Icon.unpinned)
-        
         //스와이프 삭제
         let delete = UIContextualAction(style: .normal, title: "삭제") { action, view, completionHandler in
             self.showAlert(title: "삭제", message: "정말로 삭제 하시겠습니까?", buttonTitle: "삭제") {
                 ImageFileManager.shared.removeImageFromDocument(filename: "\(data.id)")
-               // self.delegate?.deleteData(data: data)
-              //  self.list = self.repository.setFolderData(self.folderInfo["folderNumber"] ?? 2, date: self.folderInfo["date"])
+                self.delegate?.deleteData(data: data)
+                let list = self.repository.findFolderWithTitle(self.folder.title).todoList
+                self.list = Array(list)
                 tableView.reloadData()
             }
         }
         delete.backgroundColor = AppColor.red
         delete.image = UIImage(systemName:Icon.delete)
-        return UISwipeActionsConfiguration(actions: [delete, pinned])
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -8,14 +8,14 @@
 import Foundation
 
 class Observable<T>{
-    var closure:((T)->Void)?
+    var closure:((T) -> Void)?
     
     var value: T{
         didSet{
             closure?(value)
         }
     }
-    init(value: T) {
+    init(_ value: T) {
         self.value = value
     }
     

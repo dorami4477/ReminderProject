@@ -19,8 +19,7 @@ final class AddViewController: BaseViewController {
     var priorty:Int = 2
     var deadLine:Int = GetDate.shared.todayInt
     let repository = TodoRepository()
-    
-    
+    let viewModel = DeadlineViewModel()
     
     override func loadView() {
         view = mainView

@@ -13,6 +13,8 @@ final class DeadlineViewController: BaseViewController {
     let mainView = DeadlineView()
     var deadLine:((Int) -> Void)?
     
+    let viewModel = DeadlineViewModel()
+    
     override func loadView() {
         view = mainView
     }
@@ -21,10 +23,14 @@ final class DeadlineViewController: BaseViewController {
         super.viewDidLoad()
         let date = GetDate.shared.toDate(date: "\(selectedDate)") ?? Date()
         mainView.picker.setDate(date, animated: false)
+        bindData()
+
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        deadLine?(selectedDate)
+    private func bindData(){
+        viewModel.outputDate.bind { value in
+            self.deadLine?(value)
+        }
     }
     
     override func configureView() {
@@ -33,7 +39,7 @@ final class DeadlineViewController: BaseViewController {
     }
 
     @objc private func setDate(_ sender: UIDatePicker){
-        selectedDate = GetDate.shared.dateToInt(date: sender.date)
+        viewModel.inputDate.value = sender.date
     }
     
     @objc private func backButtonTapped(){

@@ -41,6 +41,8 @@
 		48EC81092C3BD36900A1F68F /* NewAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81082C3BD36900A1F68F /* NewAddViewController.swift */; };
 		48EC810B2C3BD9D100A1F68F /* NewListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC810A2C3BD9D100A1F68F /* NewListViewController.swift */; };
 		48EC810D2C3BDB6C00A1F68F /* NewListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC810C2C3BDB6C00A1F68F /* NewListTableCell.swift */; };
+		48EC811A2C3D6B4900A1F68F /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC81192C3D6B4900A1F68F /* Observable.swift */; };
+		48EC811C2C3D6C7800A1F68F /* DeadlineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EC811B2C3D6C7800A1F68F /* DeadlineViewModel.swift */; };
 		48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */; };
 		48ED4A5B2C377B0C00DBA7F5 /* DateSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */; };
 		48ED4A5D2C37CF2900DBA7F5 /* TodoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */; };
@@ -100,6 +102,8 @@
 		48EC81082C3BD36900A1F68F /* NewAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAddViewController.swift; sourceTree = "<group>"; };
 		48EC810A2C3BD9D100A1F68F /* NewListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListViewController.swift; sourceTree = "<group>"; };
 		48EC810C2C3BDB6C00A1F68F /* NewListTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewListTableCell.swift; sourceTree = "<group>"; };
+		48EC81192C3D6B4900A1F68F /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		48EC811B2C3D6C7800A1F68F /* DeadlineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineViewModel.swift; sourceTree = "<group>"; };
 		48ED4A582C36DEE100DBA7F5 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		48ED4A5A2C377B0C00DBA7F5 /* DateSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSingleton.swift; sourceTree = "<group>"; };
 		48ED4A5C2C37CF2900DBA7F5 /* TodoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRepository.swift; sourceTree = "<group>"; };
@@ -142,6 +146,7 @@
 		488C00492C34306B005F900F /* Reminder Project */ = {
 			isa = PBXGroup;
 			children = (
+				48EC81182C3D6B2E00A1F68F /* ViewModel */,
 				48EC81072C3BD33D00A1F68F /* NewFolder */,
 				488C00762C343D87005F900F /* Views */,
 				488C006B2C343351005F900F /* Helpers */,
@@ -229,6 +234,15 @@
 				48EC810C2C3BDB6C00A1F68F /* NewListTableCell.swift */,
 			);
 			path = NewFolder;
+			sourceTree = "<group>";
+		};
+		48EC81182C3D6B2E00A1F68F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				48EC81192C3D6B4900A1F68F /* Observable.swift */,
+				48EC811B2C3D6C7800A1F68F /* DeadlineViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +333,7 @@
 				483150622C353D3100175847 /* TagView.swift in Sources */,
 				4831505E2C35383000175847 /* PriorityViewController.swift in Sources */,
 				488C004F2C34306B005F900F /* ListViewController.swift in Sources */,
+				48EC811C2C3D6C7800A1F68F /* DeadlineViewModel.swift in Sources */,
 				483150602C353CEC00175847 /* PriorityView.swift in Sources */,
 				48EC81012C3BCA4D00A1F68F /* NewTodo.swift in Sources */,
 				488C006F2C343380005F900F /* BaseTableCell.swift in Sources */,
@@ -341,6 +356,7 @@
 				483150562C352D7300175847 /* DeadlineView.swift in Sources */,
 				4831506A2C35594500175847 /* FolderView.swift in Sources */,
 				488C00732C343BAE005F900F /* BaseViewController.swift in Sources */,
+				48EC811A2C3D6B4900A1F68F /* Observable.swift in Sources */,
 				488C00782C343D9B005F900F /* BaseView.swift in Sources */,
 				483150642C354B2300175847 /* FolderViewController.swift in Sources */,
 				48ED4A592C36DEE100DBA7F5 /* StringExtension.swift in Sources */,

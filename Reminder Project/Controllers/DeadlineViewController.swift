@@ -10,7 +10,7 @@ import UIKit
 final class DeadlineViewController: BaseViewController {
 
     var selectedDate:Int = 0
-     let mainView = DeadlineView()
+    let mainView = DeadlineView()
     var deadLine:((Int) -> Void)?
     
     override func loadView() {

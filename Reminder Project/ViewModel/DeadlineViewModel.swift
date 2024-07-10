@@ -21,5 +21,5 @@ class DeadlineViewModel{
     func selectedDate(){
         let date = GetDate.shared.dateToInt(date: inputDate.value)
         outputDate.value = date
-    }
+    }    
 }
